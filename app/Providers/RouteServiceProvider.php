@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -14,14 +15,17 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $SiteNamespace = 'App\Http\Controllers';
+    protected $AdminNamespace = 'App\Http\Controllers\Admin';
+    protected $UserNamespace = 'App\Http\Controllers\User';
 
     /**
      * The path to the "home" route for your application.
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/user'; // User
+    public const ADMIN_HOME = '/admin'; // Admin
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -46,7 +50,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapAdminRoutes();
+
+        $this->mapUserRoutes();
     }
 
     /**
@@ -58,10 +64,31 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
-            ->namespace($this->namespace)
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
+            ->prefix(LaravelLocalization::setLocale())
+            ->namespace($this->SiteNamespace)
             ->group(base_path('routes/web.php'));
     }
+
+    protected function mapAdminRoutes()
+    {
+        Route::middleware(['web', 'auth' , 'role:super_admin|admin'])
+            ->prefix('admin')
+            ->as('admin.')
+            ->namespace($this->AdminNamespace)
+            ->group(base_path('routes/admin.php'));
+    }
+
+
+    protected function mapUserRoutes()
+    {
+        Route::middleware(['web', 'auth' , 'role:user', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
+            ->prefix(LaravelLocalization::setLocale() . '/user')
+            ->as('user.')
+            ->namespace($this->UserNamespace)
+            ->group(base_path('routes/user.php'));
+    }
+
 
     /**
      * Define the "api" routes for the application.

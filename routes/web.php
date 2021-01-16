@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Site\Faq;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+
+Auth::routes(['verify' => true]);
+
+
+Route::get('test', function () {
+    $faq = Faq::first();
+
+    return $faq;
 });
