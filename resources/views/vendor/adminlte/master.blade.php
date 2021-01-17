@@ -96,6 +96,26 @@
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        @if(session()->has('success'))
+        Toast.fire({
+            type: 'success',
+            title: '{{ session("success") }}'
+        })
+        @endif
+    </script>
+
 </body>
 
 </html>

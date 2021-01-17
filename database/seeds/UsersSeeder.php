@@ -14,25 +14,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        Role::create([
-            'name' => 'super_admin',
-            'display_name' => 'Super Administrator',
-            'description' => 'can do everything'
-        ]);
-
-        Role::create([
-            'name' => 'admin',
-            'display_name' => 'Administrator',
-            'description' => 'User is allowed to manage and edit other users',
-        ]);
-
-        Role::create([
-            'name' => 'user',
-            'display_name' => 'User',
-            'description' => 'User',
-        ]);
-
-
         // create first super admin
 
         $superAdmin = User::create([

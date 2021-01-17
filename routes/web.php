@@ -28,7 +28,3 @@ Route::get('test', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Permission;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -13,13 +14,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            LaratrustSeeder::class,
             CountrySeeder::class,
             FaqSeeder::class,
             SitePageSeeder::class,
-            UsersSeeder::class
+            UsersSeeder::class,
         ]);
 
-        factory(User::class , 40)->create();
-
+        factory(User::class, 40)->create();
     }
 }

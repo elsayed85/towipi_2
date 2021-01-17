@@ -6,6 +6,7 @@ use App\Models\General\Country;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laratrust\Traits\LaratrustUserTrait;
 use Rinvex\Addresses\Traits\Addressable;
 
@@ -39,6 +40,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function updatePassword($password)
+    {
+        return $this->update(['password' => Hash::make($password)]);
+    }
 
     public function country()
     {
