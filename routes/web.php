@@ -26,3 +26,9 @@ Route::get('test', function () {
 
     return $faq;
 });
+
+Auth::routes();
+
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');

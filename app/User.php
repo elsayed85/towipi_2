@@ -44,4 +44,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Country::class);
     }
+
+    // AdminLte
+    public function adminlte_image()
+    {
+        return 'https://ui-avatars.com/api/?name=' . $this->name;
+    }
+
+    public function adminlte_desc()
+    {
+        return 'That\'s a nice guy';
+    }
+
+    public function adminlte_profile_url()
+    {
+        return 'profile/username';
+    }
 }
