@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Settings\GeneralSettings;
 use App\Models\Site\Faq;
 use Illuminate\Support\Facades\Route;
 

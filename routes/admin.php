@@ -21,3 +21,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
         // user routes
     });
 });
+
+
+Route::get('test', function () {
+    unlockSite();
+});

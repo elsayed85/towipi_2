@@ -64,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
+        Route::middleware(['web', 'site_status',  'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
             ->prefix(LaravelLocalization::setLocale())
             ->namespace($this->SiteNamespace)
             ->group(base_path('routes/web.php'));
@@ -72,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapAdminRoutes()
     {
-        Route::middleware(['web', 'auth' , 'role:super_admin|admin'])
+        Route::middleware(['web', 'auth', 'role:super_admin|admin'])
             ->prefix('admin')
             ->as('admin.')
             ->namespace($this->AdminNamespace)
@@ -82,7 +82,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapUserRoutes()
     {
-        Route::middleware(['web', 'auth' , 'role:user', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
+        Route::middleware(['web',  'auth', 'site_status', 'role:user', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
             ->prefix(LaravelLocalization::setLocale() . '/user')
             ->as('user.')
             ->namespace($this->UserNamespace)
@@ -100,7 +100,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-            ->middleware('api')
+            ->middleware(['api'])
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
     }

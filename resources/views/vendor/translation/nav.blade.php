@@ -1,7 +1,7 @@
 <nav class="header">
 
     <h1 class="text-lg px-6">
-        <a href="{{ route("home") }}">{{ config('app.name') }}</a>
+        <a href="{{ route("home") }}">{{ getSiteName() }}</a>
     </h1>
 
     <ul class="flex-grow justify-end pr-2">

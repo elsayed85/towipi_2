@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Settings\GeneralSettings;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\Boolean;
 
 if (!function_exists('qlog')) {
     function localUrl($url = "")
@@ -391,3 +393,52 @@ function array_remove_null($item)
         })
         ->toArray();
 }
+
+// site settings
+function generalSettings()
+{
+    return app(GeneralSettings::class);
+}
+
+function getSiteName(): string
+{
+    return generalSettings()->site_name;
+}
+
+function siteLockType(): string
+{
+    return generalSettings()->site_lock_type;
+}
+
+// site actions
+function unlockSite()
+{
+    return generalSettings()->unlockSite();
+}
+
+function makeSiteInMaintenanceMode()
+{
+    return generalSettings()->makeSiteInMaintenanceMode();
+}
+
+function makeSiteInVacationMode()
+{
+    return generalSettings()->makeSiteInVacationMode();
+}
+
+// site checks
+function isSiteInMaintenanceMode()
+{
+    return generalSettings()->isSiteInMaintenanceMode();
+}
+
+function isSiteInVacationMode()
+{
+    return generalSettings()->isSiteInVacationMode();
+}
+
+function isSiteIsLocked()
+{
+    return generalSettings()->site_locked;
+}
+

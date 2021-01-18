@@ -22,6 +22,7 @@
         "mcamara/laravel-localization": "^1.6",
         "rinvex/laravel-addresses": "^4.1",
         "santigarcor/laratrust": "^6.3",
+        "spatie/laravel-settings": "^1.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
