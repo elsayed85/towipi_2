@@ -19,5 +19,5 @@ Route::get('/', function () {
 })->name('home');
 
 Auth::routes(['verify' => true]);
-
 Route::get('/p/{page:slug}', "PageController")->name('page');
+Route::get('faq', 'FaqController')->name('faq');

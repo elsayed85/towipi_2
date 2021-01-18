@@ -29,8 +29,13 @@ class PageRequest extends FormRequest
             ], validateMultiLang(['title' => ['sometimes', 'nullable', 'min:3', 'max:40'],]));
         } elseif ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             return array_merge([
-                'slug' => ['sometimes', 'min:3', 'max:100', 'unique:site_pages,slug,' . $this->page . ',id'],
+                'slug' => ['sometimes', 'min:3', 'max:100', 'unique:site_pages,slug,' . $this->page->id . ',id'],
             ], validateMultiLang(['title' => ['sometimes', 'min:3', 'max:40'], 'body' => ['sometimes'],]));
         }
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge(array_remove_null($this->all()));
     }
 }

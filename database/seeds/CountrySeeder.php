@@ -270,6 +270,7 @@ class CountrySeeder extends Seeder
             array('id' => '253', 'iso' => 'SS', 'name' => 'SOUTH SUDAN', 'nicename' => 'South Sudan', 'iso3' => 'SSD', 'numcode' => '728', 'phonecode' => '211')
         );
 
+
         DB::table('countries')->insert($countries);
     }
 }

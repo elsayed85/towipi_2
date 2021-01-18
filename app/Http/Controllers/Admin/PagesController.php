@@ -74,9 +74,8 @@ class PagesController extends Controller
     {
         $data = $request->validated();
         $data['slug'] = Str::slug($request->slug);
-        dd($data);
         $page = Page::create($data);
-        return redirect(route('admin.pages.index'))->withSuccess("page {$page->title}  created succfully");
+        return redirect(route('admin.pages.index'))->withSuccess("page {$page->title} created succfully");
     }
 
     /**
@@ -87,7 +86,7 @@ class PagesController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        return view('admin.pages.edit', get_defined_vars());
     }
 
     /**
@@ -99,7 +98,10 @@ class PagesController extends Controller
      */
     public function update(PageRequest $request, Page $page)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($request->slug);
+        $page->update($data);
+        return back()->withSuccess("page {$page->title} Updated succfully");
     }
 
     /**
@@ -110,6 +112,7 @@ class PagesController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        $page->delete();
+        return redirect(route('admin.pages.index'))->withSuccess("page {$page->title} Deleted succfully");
     }
 }

@@ -1,19 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Pages')
+@section('title', 'Faq')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Pages</h1>
+<h1 class="m-0 text-dark">Faq</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <table id="pages" class="table table-bordered table-striped">
+        <table id="faqs" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>title</th>
+                    <th>Body</th>
                     <th>Created</th>
                     <th>Actions</th>
                 </tr>
@@ -27,25 +28,32 @@
 @section('js')
 <script>
     $(document).ready( function () {
-    $('#pages').DataTable({
+    $('#faqs').DataTable({
       processing: true,
       serverSide: true,
-      ajax: "{{ route('admin.pages.index')}}",
+      ajax: "{{ route('admin.faq.index')}}",
       dom: 'Bfrtip',
     buttons: [
         'copy', 'excel', 'pdf' , 'print',
-        @if(auth()->user()->isAbleTo('pages-create'))
+        @if(auth()->user()->isAbleTo('faq-create'))
             {
-                text: 'Add New Page',
+                text: 'Add New Faq',
                 action: function ( e, dt, node, config ) {
-                    location.replace("{{ route('admin.pages.create') }}");
+                    location.replace("{{ route('admin.faq.create') }}");
                 }
-            }
+            },
         @endif
+        {
+            text: 'Open All Faq',
+            action: function ( e, dt, node, config ) {
+                location.replace("{{ route('faq') }}");
+            }
+        }
     ],
       columns: [
-        { data: 'id', name: 'id' ,  orderable: false, searchable: false },
-        { data: 'title', name: 'title' ,  orderable: false, searchable: false },
+        { data: 'id', name: 'id' },
+        { data: 'title', name: 'en.title' ,  orderable: false, searchable: false },
+        { data: 'body', name: 'en.body' ,  orderable: false, searchable: false },
         { data: 'created_at', name: 'created_at' },
         {data: 'action', name: 'action', orderable: false, searchable: false},
       ]

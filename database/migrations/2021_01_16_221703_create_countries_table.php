@@ -17,11 +17,10 @@ class CreateCountriesTable extends Migration
             $table->id();
             $table->char('iso', 2);
             $table->string('name', 80);
-            $table->string('nicename', 80);
-            $table->char('iso3', 3  )->nullable();
+            $table->string('nicename', 80)->nullable();
+            $table->char('iso3', 3)->nullable();
             $table->smallinteger('numcode')->nullable();
             $table->integer('phonecode');
-            $table->timestamps();
         });
     }
 

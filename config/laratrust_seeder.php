@@ -16,6 +16,8 @@ return [
             'admins' => 'c,r,u,d',
             'users' => 'c,r,u,d',
             'pages' => 'c,r,u,d',
+            'faq' => 'c,r,u,d',
+            'country' => 'c,r,u,d',
             'personal_info' => 'u',
             'lang_and_translations' => 'u'
         ],
@@ -23,6 +25,8 @@ return [
             'admins' => 'r',
             'users' => 'c,r,u,d',
             'pages' => 'c,r,u,d',
+            'faq' => 'c,r,u,d',
+            'country' => 'c,r,u,d',
             'personal_info' => 'u',
             'lang_and_translations' => 'u'
         ],

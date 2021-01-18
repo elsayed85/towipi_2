@@ -254,6 +254,18 @@ return [
             'can'  => ['pages-create', 'pages-read', 'pages-update', 'pages-delete'],
         ],
         [
+            'text' => 'Faq',
+            'url'  => 'admin/faq',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['faq-create', 'faq-read', 'faq-update', 'faq-delete'],
+        ],
+        [
+            'text' => 'Countries',
+            'url'  => 'admin/country',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['country-create', 'country-read', 'country-update', 'country-delete'],
+        ],
+        [
             'text' => 'Languages & Translation',
             'url'  => 'admin/lang',
             'icon' => 'fas fa-fw fa-lock',

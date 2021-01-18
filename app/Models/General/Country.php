@@ -14,6 +14,13 @@ class Country extends Model
      */
     protected $guarded = [];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     public function users()
     {
         return $this->hasMany(User::class);
