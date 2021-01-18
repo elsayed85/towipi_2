@@ -114,6 +114,13 @@
             title: '{{ session("success") }}'
         })
         @endif
+
+        @if(session()->has('failed'))
+        Toast.fire({
+            type: 'error',
+            title: '{{ session("failed") }}'
+        })
+        @endif
     </script>
 
 </body>

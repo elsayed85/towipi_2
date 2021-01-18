@@ -20,11 +20,4 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-
-Route::get('test', function () {
-    $faq = Faq::first();
-
-    return $faq;
-});
-
-Auth::routes();
+Route::get('/p/{page:slug}', "PageController")->name('page');

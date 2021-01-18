@@ -9,3 +9,4 @@ Route::put('update-info', 'HomeController@updateInfo')->name('updateInfo');
 
 
 Route::resource('admins', 'AdminController')->names('admin')->parameters('admin');
+Route::resource('pages', 'PagesController')->names('pages')->parameters('page')->except(['show']);

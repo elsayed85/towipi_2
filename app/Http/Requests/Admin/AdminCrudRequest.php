@@ -34,8 +34,8 @@ class AdminCrudRequest extends FormRequest
         } elseif ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             return [
                 'name' => ['sometimes', 'min:3', 'max:40'],
-                'email' => ['sometimes', 'email', 'unique:users,email'],
-                'password' => ['sometimes', 'min:3', 'max:40']
+                'email' => ['sometimes', 'email', 'unique:users,email,' . $this->admin->id . ',id'],
+                'password' => ['sometimes', 'nullable', 'min:3', 'max:40']
             ];
         }
     }

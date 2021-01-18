@@ -299,7 +299,7 @@ return [
         | Enable/Disable the permissions assignment to the users.
         |
         */
-        'assign_permissions_to_user' => false,
+        'assign_permissions_to_user' => true,
 
         /*
         |--------------------------------------------------------------------------

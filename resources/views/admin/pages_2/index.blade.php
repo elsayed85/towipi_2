@@ -1,22 +1,19 @@
 @extends('adminlte::page')
 
-@section('title', 'Admins')
+@section('title', 'Pages')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Admins</h1>
+<h1 class="m-0 text-dark">Pages</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <table id="admins" class="table table-bordered table-striped">
+        <table id="pages" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Roles</th>
-                    <th>permissions</th>
                     <th>Created</th>
                     <th>Actions</th>
                 </tr>
@@ -30,18 +27,18 @@
 @section('js')
 <script>
     $(document).ready( function () {
-    $('#admins').DataTable({
+    $('#pages').DataTable({
       processing: true,
       serverSide: true,
-      ajax: "{{ route('admin.admin.index')}}",
+      ajax: "{{ route('admin.pages.index')}}",
       dom: 'Bfrtip',
     buttons: [
         'copy', 'excel', 'pdf' , 'print',
-        @if(auth()->user()->isAbleTo('admins-create'))
+        @if(auth()->user()->isAbleTo('pages-create'))
             {
-                text: 'Add New Admin',
+                text: 'Add New Page',
                 action: function ( e, dt, node, config ) {
-                    location.replace("{{ route('admin.admin.create') }}");
+                    location.replace("{{ route('admin.pages.create') }}");
                 }
             }
         @endif
@@ -49,9 +46,6 @@
       columns: [
         { data: 'id', name: 'id' },
         { data: 'name', name: 'name' },
-        { data: 'email', name: 'email' },
-        { data: 'roles', name: 'roles' },
-        { data: 'permissions', name: 'permissions' },
         { data: 'created_at', name: 'created_at' },
         {data: 'action', name: 'action', orderable: false, searchable: false},
       ]

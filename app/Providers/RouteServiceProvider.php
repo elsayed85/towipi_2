@@ -15,7 +15,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $SiteNamespace = 'App\Http\Controllers';
+    protected $SiteNamespace = 'App\Http\Controllers\Site';
     protected $AdminNamespace = 'App\Http\Controllers\Admin';
     protected $UserNamespace = 'App\Http\Controllers\User';
 

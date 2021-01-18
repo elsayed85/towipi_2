@@ -15,12 +15,14 @@ return [
         'super_admin' => [
             'admins' => 'c,r,u,d',
             'users' => 'c,r,u,d',
+            'pages' => 'c,r,u,d',
             'personal_info' => 'u',
             'lang_and_translations' => 'u'
         ],
         'admin' => [
-            'users' => 'c,r,u,d',
             'admins' => 'r',
+            'users' => 'c,r,u,d',
+            'pages' => 'c,r,u,d',
             'personal_info' => 'u',
             'lang_and_translations' => 'u'
         ],

@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Site\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
-class VerificationController extends Controller
+class ConfirmPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Email Verification Controller
+    | Confirm Password Controller
     |--------------------------------------------------------------------------
     |
-    | This controller is responsible for handling email verification for any
-    | user that recently registered with the application. Emails may also
-    | be re-sent if the user didn't receive the original email message.
+    | This controller is responsible for handling password confirmations and
+    | uses a simple trait to include the behavior. You're free to explore
+    | this trait and override any functions that require customization.
     |
     */
 
-    use VerifiesEmails;
+    use ConfirmsPasswords;
 
     /**
-     * Where to redirect users after verification.
+     * Where to redirect users when the intended url fails.
      *
      * @var string
      */
@@ -36,7 +36,6 @@ class VerificationController extends Controller
             return "/user";
         }
     }
-
     /**
      * Create a new controller instance.
      *
@@ -45,7 +44,5 @@ class VerificationController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 }

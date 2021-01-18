@@ -242,6 +242,18 @@ return [
             'can'  => 'personal_info-update',
         ],
         [
+            'text' => 'Admins',
+            'url'  => 'admin/admins',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['admins-create', 'admins-read', 'admins-update', 'admins-delete'],
+        ],
+        [
+            'text' => 'Pages',
+            'url'  => 'admin/pages',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['pages-create', 'pages-read', 'pages-update', 'pages-delete'],
+        ],
+        [
             'text' => 'Languages & Translation',
             'url'  => 'admin/lang',
             'icon' => 'fas fa-fw fa-lock',
