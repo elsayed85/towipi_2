@@ -1,0 +1,74 @@
+
+
+// Font sizes
+.font-11 {
+  font-size: 11px;
+}
+.font-12 {
+  font-size: 12px;
+}
+.font-13 {
+  font-size: 13px;
+}
+.font-14 {
+  font-size: 14px;
+}
+.font-15 {
+  font-size: 15px;
+}
+.font-16 {
+  font-size: 16px;
+}
+.font-18 {
+  font-size: 18px;
+}
+.font-20 {
+  font-size: 20px;
+}
+.font-21 {
+  font-size: 21px;
+}
+.font-24 {
+  font-size: 24px;
+}
+.font-26 {
+  font-size: 26px;
+  @include mobile() {
+    font-size: 20px;
+  }
+}
+.font-30 {
+  font-size: 30px;
+  @include mobile() {
+    font-size: 20px;
+  }
+}
+.font-45 {
+  font-size: 45px;
+  @include mobile() {
+    font-size: 25px;
+  }
+}
+.font-85 {
+  font-size: 85px;
+  @include mobile() {
+    font-size: 30px;
+  }
+}
+
+// Families
+.gotham {
+  font-family: "gotham";
+}
+
+.gotham-bold {
+  font-family: "gotham-bold";
+}
+
+.gotham-light {
+  font-family: "gotham-light";
+}
+
+.myriad {
+  font-family: "myriad-pro-regular";
+}

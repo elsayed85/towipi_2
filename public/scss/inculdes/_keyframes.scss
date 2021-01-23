@@ -1,0 +1,57 @@
+/* Heart beat animation */
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2) ;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+ 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes movingUp {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+ 
+@-webkit-keyframes blur-text {
+  0% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+  }
+
+  100% {
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes blur-text {
+  0% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+  }
+
+  100% {
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+  }
+}

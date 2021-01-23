@@ -8,6 +8,9 @@ class GeneralSettings extends Settings
 {
     public string $site_name;
 
+    public ?string $nav_logo = 'logos/nav/logo.png';
+    public ?string $footer_logo = 'logos/footer/logo.png';
+
     public bool $site_locked;
 
     public ?string $site_lock_type;

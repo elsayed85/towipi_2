@@ -1,0 +1,42 @@
+$main_color: #ff96c5;
+$primary_color: #97e3f0;
+$secondary_color: #333;
+$white : #fff;
+$font10:10px;
+$font12:12px;
+$font14:14px;
+$font16:16px;
+$font18:18px;
+$font20:20px;
+$font22:22px;
+$font24:24px;
+$font26:26px;
+$font28:28px;
+$font30:30px;
+$font32:32px;
+$font34:34px;
+$font36:36px;
+$font38:38px;
+$font40:40px;
+
+.main-color {
+    color: $main_color;
+}
+.primary-color {
+    color: $primary_color;
+}
+.secondary-color {
+    color: $secondary_color;
+}
+ 
+
+.main-bg-color {
+    background-color: $main_color !important;
+}
+.primary-bg-color {
+    background-color: $primary_color !important;
+}
+.secondary-bg-color {
+    background-color: $secondary_color !important;
+}
+ 

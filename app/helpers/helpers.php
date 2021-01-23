@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Settings\GeneralSettings;
+use App\Http\Settings\SocialSettings;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Boolean;
@@ -16,24 +17,6 @@ if (!function_exists('qlog')) {
     function qlog()
     {
         dd(DB::getQueryLog());
-    }
-}
-
-if (!function_exists('locales')) {
-    function locales()
-    {
-        return config('translatable.locales');
-    }
-}
-
-if (!function_exists('localesAliases')) {
-    function localesAliases($locale)
-    {
-        try {
-            return languages()[$locale]['native'];
-        } catch (ErrorException $e) {
-            return 'Undefined Language';
-        }
     }
 }
 
@@ -375,6 +358,45 @@ if (!function_exists('languages')) {
     }
 }
 
+if (!function_exists('locales')) {
+    function locales()
+    {
+        return config('translatable.locales');
+    }
+}
+
+if (!function_exists('localesAliases')) {
+    function localesAliases($locale)
+    {
+        try {
+            return languages()[$locale]['native'];
+        } catch (ErrorException $e) {
+            return 'Undefined Language';
+        }
+    }
+}
+
+function getCurrentLocaleDirection()
+{
+    return \LaravelLocalization::getCurrentLocaleDirection();
+}
+
+function getCurrentLocaleName()
+{
+    return \LaravelLocalization::getCurrentLocaleName();
+}
+
+function getCurrentLocale()
+{
+    return \LaravelLocalization::getCurrentLocale();
+}
+
+function getSupportedLocales()
+{
+    return \LaravelLocalization::getSupportedLocales();
+}
+
+
 function array_remove_null($item)
 {
     if (!is_array($item)) {
@@ -394,6 +416,13 @@ function array_remove_null($item)
         ->toArray();
 }
 
+// social settings
+
+function socialSettings()
+{
+    return app(SocialSettings::class);
+}
+
 // site settings
 function generalSettings()
 {
@@ -403,6 +432,16 @@ function generalSettings()
 function getSiteName(): string
 {
     return generalSettings()->site_name;
+}
+
+function getSiteNavLogo(): string
+{
+    return asset(generalSettings()->nav_logo);
+}
+
+function getSiteFooterLogo(): string
+{
+    return asset(generalSettings()->footer_logo);
 }
 
 function siteLockType(): string
@@ -441,4 +480,3 @@ function isSiteIsLocked()
 {
     return generalSettings()->site_locked;
 }
-

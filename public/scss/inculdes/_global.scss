@@ -1,0 +1,371 @@
+// global
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 70px;
+  text-transform: uppercase;
+  @include mobile() {
+    font-size: 40px;
+  }
+}
+
+h5 {
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  @include mobile() {
+    font-size: 25px;
+  }
+}
+
+h6 {
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
+  @include mobile() {
+    font-size: 16px;
+  }
+}
+
+a {
+  color: $white;
+  @extend %transition;
+  &:hover {
+    color: $primary_color;
+  }
+}
+
+hr {
+  border-top: 2px solid #70707036;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.qty-input {
+  color: $secondary_color;
+  background: $white;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid $main_color;
+  .product-qty,
+  .qty-count {
+    background: $main_color;
+    color: inherit;
+    font-weight: bold;
+    font-size: inherit;
+    border: none;
+    display: inline-block;
+    min-width: 0;
+    height: 2rem;
+    line-height: 1;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .product-qty {
+    width: 50px;
+    min-width: 0;
+    display: inline-block;
+    text-align: center;
+    appearance: textfield;
+    background: $white;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+
+  .qty-count {
+    padding: 0;
+    cursor: pointer;
+    width: 2.5rem;
+    font-size: 1.25em;
+    text-indent: -100px;
+    overflow: hidden;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: "";
+      height: 2px;
+      width: 10px;
+      position: absolute;
+      display: block;
+      background: $white;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    &--minus {
+      border-right: 1px solid $white;
+    }
+    &--add {
+      border-left: 1px solid $white;
+      &:after {
+        transform: rotate(90deg);
+      }
+    }
+
+    &:disabled {
+      color: $primary_color;
+      background: $main_color;
+      cursor: not-allowed;
+      border-color: transparent;
+
+      &:before,
+      &:after {
+        background: $primary_color;
+      }
+    }
+  }
+}
+
+.section {
+  padding: 50px 0;
+}
+
+.form-control {
+  border-radius: unset;
+  background: transparent;
+  border-color: #495057;
+  border-radius: 50px;
+  height: calc(2em + 0.75rem + 2px);
+  &:focus {
+    background: $white;
+    border-color: $white;
+    box-shadow: unset;
+  }
+}
+
+select {
+  &.form-control {
+    height: calc(1.5em + 0.75rem + 0px);
+    &:focus {
+      background: $white;
+      border-color: $main_color;
+      color: $main_color;
+      box-shadow: unset;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.h-100-vh {
+  height: 100vh;
+}
+
+.filter-btn {
+  margin: 10px;
+  font-weight: bold;
+}
+
+//  Placeholders
+%max-width-300 {
+  text-align: center;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto 60px;
+}
+
+%transition {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+// Bootstrap Reset
+.btn {
+  border-radius: 0px;
+  padding: 8px 30px !important;
+  text-transform: uppercase;
+  @extend %transition;
+  &.btn-info {
+    font-weight: 600;
+    background: $primary_color;
+    color: $white;
+    border-color: $primary_color;
+    &:hover {
+      background: $secondary_color;
+      border-color: $secondary_color;
+      color: $white;
+    }
+  }
+  &.btn-outline-info {
+    font-weight: 600;
+    border-color: $primary_color;
+    color: $primary_color;
+    &:hover {
+      background: $secondary_color;
+      border-color: $secondary_color;
+      color: $white;
+    }
+  }
+  &.btn-danger {
+    font-weight: 600;
+    background: $main_color;
+    color: $white;
+    border-color: $main_color;
+    &:hover {
+      background: $secondary_color;
+      border-color: $secondary_color;
+      color: $white;
+    }
+  }
+  &.btn-outline-danger {
+    font-weight: 600;
+    border-color: $main_color;
+    color: $main_color;
+    &:hover {
+      background: $secondary_color;
+      border-color: $secondary_color;
+      color: $white;
+    }
+  }
+}
+.btn-pink {
+  background-image: url(/img/icons/nav/button-pink.svg);
+  width: 100%;
+  max-width: 300px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: $font22;
+  &:hover {
+    text-decoration: none;
+    color: $secondary_color;
+  }
+  @include mobile() {
+    max-width: 230px;
+    height: 75px;
+    background-size: contain;
+    font-size: $font18;
+    margin: 0 auto;
+  }
+}
+
+.btn-blue {
+  background-image: url(/img/icons/nav/button-baby-blue.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: $font18;
+  min-width: 180px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  &:hover {
+    text-decoration: none;
+    color: $secondary_color;
+  }
+}
+
+.border-primary {
+  border-color: $primary_color !important;
+}
+
+// box-shadow
+.shadow {
+  box-shadow: 0px 32px 49px -34px rgba(0, 0, 0, 0.44);
+}
+// Rounded
+.rounded {
+  border-radius: 10px !important;
+}
+
+// Margins
+.mt--50 {
+  margin-top: -50px;
+}
+.mt--40 {
+  margin-top: -40px;
+}
+.mt--30 {
+  margin-top: -30px;
+}
+.mt--20 {
+  margin-top: -20px;
+}
+.mt--10 {
+  margin-top: -10px;
+}
+
+.mb--50 {
+  margin-bottom: -50px;
+}
+.mb--40 {
+  margin-bottom: -40px;
+}
+.mb--30 {
+  margin-bottom: -30px;
+}
+.mb--20 {
+  margin-bottom: -20px;
+}
+.mb--10 {
+  margin-bottom: -10px;
+}
+.text-muted {
+  color: #828b94 !important;
+}
+// featured-image
+
+.featured-image {
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+// Social Media Icons
+
+.social-media-icons {
+  li {
+    a {
+      margin-right: 10px;
+      opacity: 0.4;
+      &:hover {
+        color: $white;
+        opacity: 1;
+      }
+      i {
+        font-size: 20px;
+      }
+    }
+    &:nth-child(2) {
+      a {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.carousel-indicators {
+  li {
+    width: 15px;
+    height: 15px;
+    background: $main_color;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 50px;
+  }
+}

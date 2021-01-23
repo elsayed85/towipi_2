@@ -14,8 +14,8 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request , Page $page)
+    public function __invoke(Request $request, Page $page)
     {
-        return $page;
+        return view('site.pages.base', ['page' => $page]);
     }
 }

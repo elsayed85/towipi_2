@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Settings\GeneralSettings;
-
+use App\Http\Settings\SocialSettings;
 
 return [
 
@@ -9,7 +9,8 @@ return [
      * You can register all the settings classes here.
      */
     'settings' => [
-        GeneralSettings::class
+        GeneralSettings::class,
+        SocialSettings::class
     ],
 
     /*
