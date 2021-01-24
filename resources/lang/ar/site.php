@@ -1,12 +1,16 @@
 <?php
 
 return array (
+  'add_to_wishlist' => '',
+  'added_to_wishlist' => '',
   'dashboard' => '',
+  'favorites' => '',
   'footer' => 
   array (
     'faqs' => '',
   ),
   'login' => 'تسجيل الدخول',
+  'logout' => '',
   'nav' => 
   array (
     'about' => '',
@@ -15,6 +19,8 @@ return array (
   ),
   'or' => '',
   'register' => '',
+  'remove_from_wishlist' => '',
+  'removed_from_wishlist' => '',
   'search' => 
   array (
     'placeholder' => '',

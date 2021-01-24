@@ -34,7 +34,7 @@ class Wishlist extends Component
         if (!auth()->user()->isWishlisted($this->product)) {
             auth()->user()->addToWishlist($this->product);
             $this->dispatchBrowserEvent("added_to_wislist", [
-                'message' => trans("site.added_to_wishlist"),
+                'message' => $this->product->title . " " .  trans('site.removed_from_wishlist'),
                 'product_title' => $this->product->title,
                 "product_id" => $this->product->id,
                 'url' => route('product.show', ['product' => $this->product]),
@@ -43,7 +43,7 @@ class Wishlist extends Component
         } else {
             auth()->user()->removeFromWishlist($this->product);
             $this->dispatchBrowserEvent("removed_from_wislist", [
-                'message' => trans('site.removed_from_wishlist'),
+                'message' => $this->product->title . " " .  trans('site.removed_from_wishlist'),
                 'product_title' => $this->product->title,
                 "product_id" => $this->product->id,
                 'url' => route('product.show', ['product' => $this->product]),

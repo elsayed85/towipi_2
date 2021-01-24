@@ -3,6 +3,6 @@
      @if(!auth()->user()->isWishlisted($product))
     {{ trans('site.add_to_wishlist') }}
     @else
-    {{ trans('site.remove_to_wishlist') }}
+    {{ trans('site.remove_from_wishlist') }}
     @endif
 </button>
