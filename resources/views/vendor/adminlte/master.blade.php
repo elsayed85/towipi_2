@@ -82,6 +82,7 @@
 
         {{-- Configured Scripts --}}
         @include('adminlte::plugins', ['type' => 'js'])
+        <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 
         <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
     @else
@@ -97,6 +98,9 @@
     @yield('adminlte_js')
 
     <script>
+        $(document).ready(function (){
+            $('.ckeditor').ckeditor();
+        })
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

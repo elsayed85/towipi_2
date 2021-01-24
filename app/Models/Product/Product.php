@@ -2,7 +2,7 @@
 
 namespace App\Models\Product;
 
-use Appstract\Stock\HasStock;
+use App\Traits\HasStock;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Cviebrock\EloquentSluggable\Sluggable;

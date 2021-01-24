@@ -52,7 +52,7 @@
         <span class="font-weight-bold font-24 main-color">QTY</span>
         <div class="qty-input">
             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-            <input class="product-qty" type="number" name="product-qty" @if($inStock) value="1" min="1"  max="{{ $product->stock }}" @else min="0" max="0" value="0" @endif >
+            <input class="product-qty" type="number" name="product-qty" @if($inStock) value="1" min="1"  max="{{ $product->amount }}" @else min="0" max="0" value="0" @endif >
             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
         </div>
         @if($inStock)

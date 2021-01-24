@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eac1ac51fe4ebf173a7186c0e0bb8b45",
+    "content-hash": "3764481b80c8da8e68206420a8bda264",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -48,73 +48,6 @@
                 "source": "https://github.com/ColorlibHQ/AdminLTE/tree/v3.0.5"
             },
             "time": "2020-05-19T20:41:11+00:00"
-        },
-        {
-            "name": "appstract/laravel-stock",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/appstract/laravel-stock.git",
-                "reference": "1e3cd9f552764f51dc31dc095794ea25aa911027"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/appstract/laravel-stock/zipball/1e3cd9f552764f51dc31dc095794ea25aa911027",
-                "reference": "1e3cd9f552764f51dc31dc095794ea25aa911027",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^4.6",
-                "phpunit/phpunit": "^8.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Appstract\\Stock\\StockServiceProvider"
-                    ],
-                    "aliases": {
-                        "Alias": "Appstract\\Stock\\StockFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Appstract\\Stock\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gijs Jorissen",
-                    "email": "gijs@appstract.nl",
-                    "homepage": "https://appstract.nl",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Keep stock for Eloquent models",
-            "homepage": "https://github.com/appstract/laravel-stock",
-            "keywords": [
-                "appstract",
-                "laravel-stock"
-            ],
-            "support": {
-                "issues": "https://github.com/appstract/laravel-stock/issues",
-                "source": "https://github.com/appstract/laravel-stock/tree/1.1.1"
-            },
-            "funding": [
-                {
-                    "url": "https://www.patreon.com/appstract",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-04-30T12:26:13+00:00"
         },
         {
             "name": "asm89/stack-cors",
