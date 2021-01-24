@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Permission;
+use App\Models\Product\Category;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -23,5 +24,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         factory(User::class, 40)->create();
+
+        Category::create([
+            'en' => [
+                'name' => "cake tools"
+            ]
+        ]);
+
+        Category::create([
+            'en' => [
+                'name' => "Party Supplies"
+            ]
+        ]);
+
+        $this->call([
+            ProductCategorySeeder::class,
+            ProductSeeder::class
+        ]);
     }
 }

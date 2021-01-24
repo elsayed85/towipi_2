@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Settings\GeneralSettings;
+use App\Models\Product\Product;
 use App\Models\Site\Faq;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,4 @@ Route::get('/', "HomeController@index")->name('home');
 Auth::routes(['verify' => true]);
 Route::get('/p/{page:slug}', "PageController")->name('page');
 Route::get('faq', 'FaqController')->name('faq');
+Route::get('product/{product:slug}', "ProductController@show")->name('product.show');

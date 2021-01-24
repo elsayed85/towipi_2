@@ -8,11 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laratrust\Traits\LaratrustUserTrait;
-use Rinvex\Addresses\Traits\Addressable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, LaratrustUserTrait, Addressable;
+    use Notifiable, LaratrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
