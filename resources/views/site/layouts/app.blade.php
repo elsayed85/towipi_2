@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
     <!-- aos cdn -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Title -->
+
+    @yield('css')
+    @livewireStyles
 
     <title>
         @yield('title', getSiteName())
@@ -27,7 +29,7 @@
 </head>
 
 <body>
-
+    <form action="{{ route('logout') }}" method="post" id="logout_form">@csrf</form>
 
     <main>
         @include('site.partials.header')
@@ -48,6 +50,67 @@
     <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
     <!-- Main Scripts -->
     <script src="{{ asset('js/scripts.js') }}"></script>
+
+    <script src="{{ asset('js/sweetalert2@10.js') }}"></script>
+    @yield('js')
+    @livewireScripts
+
+    <script>
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    @if(session()->has('success'))
+    Toast.fire({
+        type: 'success',
+        title: '{{ session("success") }}'
+    })
+    @endif
+
+    @if(session()->has('failed'))
+    Toast.fire({
+        type: 'error',
+        title: '{{ session("failed") }}'
+    })
+    @endif
+
+    window.addEventListener('added_to_wislist', event => {
+        var data = event.detail;
+        $(".wishlist_ul").append(`
+        <li class="d-flex justify-content-between align-items-center" id="product_` + data.product_id + `">
+            <a href="` + data.url + `">
+                ` + data.product_title + `
+            </a>
+            <a href="#" class="text-danger delete-cart-btn">
+                <i class="far fa-times-circle"></i>
+            </a>
+        </li>
+        `)
+        $(".wishlist_count").text(data.count)
+        Toast.fire({
+            type: 'success',
+            title: data.message
+        })
+    });
+
+    window.addEventListener('removed_from_wislist', event => {
+        var data = event.detail;
+        $(".wishlist_ul #product_" + data.product_id).remove()
+        $(".wishlist_count").text(data.count)
+        Toast.fire({
+            type: 'success',
+            title: data.message
+        })
+    });
+    </script>
 </body>
 
 </html>

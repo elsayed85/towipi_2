@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\General\Country;
+use App\Traits\HasWishlist;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, LaratrustUserTrait;
+    use Notifiable, LaratrustUserTrait, HasWishlist;
 
     /**
      * The attributes that are mass assignable.

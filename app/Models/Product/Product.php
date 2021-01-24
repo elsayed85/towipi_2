@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use App\Traits\HasStock;
+use App\Traits\Wishlistable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -12,7 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements TranslatableContract, HasMedia
 {
-    use Translatable, InteractsWithMedia, HasStock , Sluggable;
+    use Translatable, InteractsWithMedia, HasStock , Sluggable , Wishlistable;
     /**
      * The attributes that aren't mass assignable.
      *

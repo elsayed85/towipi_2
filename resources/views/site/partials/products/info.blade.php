@@ -1,5 +1,5 @@
 @php
-    $inStock = $product->inStock();
+$inStock = $product->inStock();
 @endphp
 <div class="product-details">
     <h1>
@@ -52,7 +52,8 @@
         <span class="font-weight-bold font-24 main-color">QTY</span>
         <div class="qty-input">
             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-            <input class="product-qty" type="number" name="product-qty" @if($inStock) value="1" min="1"  max="{{ $product->amount }}" @else min="0" max="0" value="0" @endif >
+            <input class="product-qty" type="number" name="product-qty" @if($inStock) value="1" min="1"
+                max="{{ $product->amount }}" @else min="0" max="0" value="0" @endif>
             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
         </div>
         @if($inStock)
@@ -64,13 +65,14 @@
     <hr>
     <div class="add-to-cart">
         <div class="btn-group-sm" role="group" aria-label="">
+            @auth
+            @role(['user'])
             <button type="button" class="btn btn-sm btn-info rounded-pill mr-3">
                 <i class="fas fa-shopping-cart mr-2"></i> Add to cart
             </button>
-
-            <button type="button" class="btn btn-danger rounded-pill main-color font-18">
-                <i class="far fa-heart mr-2"></i> Add to wishlist
-            </button>
+            @livewire('site.wishlist', ['product' => $product])
+            @endrole
+            @endauth
         </div>
     </div>
     <hr>

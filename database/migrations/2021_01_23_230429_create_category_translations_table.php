@@ -20,7 +20,7 @@ class CreateCategoryTranslationsTable extends Migration
             // Foreign key to the main model
             $table->unsignedBigInteger('category_id');
             $table->unique(['category_id', 'locale']);
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->string('name');
         });

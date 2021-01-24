@@ -40,76 +40,18 @@
                                 <i class="fas fa-sign-in-alt mr-1"></i>{{ trans('site.dashboard') }}
                             </a>
                             @endrole
+
+                            <a class="btn btn-sm btn-outline-dark rounded-pill "
+                                onclick="document.getElementById('logout_form').submit()">
+                                <i class="fas fa-sign-in-alt mr-1"></i>{{ trans('site.logout') }}
+                            </a>
                         </div>
                         @endauth
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-heart font-26"></i>
-                            <span class="count-favorites count">1</span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <ul class="list-unstyled w-100 favorites-list">
-                                <li class="d-flex justify-content-between align-items-center pb-2">
-                                    <h6 class="font-13 mb-0">
-                                        Favorites <i class="fas fa-heart ml-1"></i>
-                                    </h6>
-                                    <span class="font-12 badge badge-dark">25</span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-favorite-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-favorite-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-favorite-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-favorite-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-favorite-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-favorite-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
 
-                            </ul>
-                        </div>
+                    @auth
+                    @include('site.partials.wishlist_dropdown')
 
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -176,6 +118,8 @@
                         </div>
 
                     </li>
+                    @endauth
+
                     <li class="nav-item dropdown languages-toggler">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">

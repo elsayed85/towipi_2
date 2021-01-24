@@ -34,11 +34,15 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('site.layouts.app', function ($view) {
             $view->with([
-                'footerPages' => Page::with('translations')->get()
-            ]);
-            $view->with([
+                'footerPages' => Page::with('translations')->get(),
                 'site_social' => socialSettings()
             ]);
+
+            if (auth()->check()) {
+                $view->with([
+                    "wishlist" => auth()->user()->wishlist()->with(["product"])->get()
+                ]);
+            }
         });
     }
 }

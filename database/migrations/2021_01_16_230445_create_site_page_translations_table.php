@@ -20,7 +20,7 @@ class CreateSitePageTranslationsTable extends Migration
             // Foreign key to the main model
             $table->unsignedBigInteger('page_id');
             $table->unique(['page_id', 'locale']);
-            $table->foreign('page_id')->references('id')->on('site_pages')->onDelete('cascade');
+            $table->foreign('page_id')->references('id')->on('site_pages')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->string('title');
             $table->longText('body')->nullable();

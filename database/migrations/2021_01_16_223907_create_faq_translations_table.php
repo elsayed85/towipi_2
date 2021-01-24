@@ -20,7 +20,7 @@ class CreateFaqTranslationsTable extends Migration
             // Foreign key to the main model
             $table->unsignedBigInteger('faq_id');
             $table->unique(['faq_id', 'locale']);
-            $table->foreign('faq_id')->references('id')->on('faqs')->onDelete('cascade');
+            $table->foreign('faq_id')->references('id')->on('faqs')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->string('title');
             $table->mediumText('body')->nullable();

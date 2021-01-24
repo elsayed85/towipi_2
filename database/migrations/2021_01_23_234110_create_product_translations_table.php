@@ -20,7 +20,7 @@ class CreateProductTranslationsTable extends Migration
             // Foreign key to the main model
             $table->unsignedBigInteger('product_id');
             $table->unique(['product_id', 'locale']);
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->string('title');
             $table->longText('description')->nullable();
