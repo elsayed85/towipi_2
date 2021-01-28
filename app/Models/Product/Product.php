@@ -7,13 +7,15 @@ use App\Traits\Wishlistable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Gloudemans\Shoppingcart\CanBeBought;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements TranslatableContract, HasMedia
+class Product extends Model implements TranslatableContract, HasMedia, Buyable
 {
-    use Translatable, InteractsWithMedia, HasStock , Sluggable , Wishlistable;
+    use Translatable, InteractsWithMedia, HasStock, Sluggable, Wishlistable, CanBeBought;
     /**
      * The attributes that aren't mass assignable.
      *
@@ -32,6 +34,23 @@ class Product extends Model implements TranslatableContract, HasMedia
         ];
     }
 
+    public function getBuyableIdentifier($options = null)
+    {
+        return $this->id;
+    }
+    public function getBuyableDescription($options = null)
+    {
+        return $this->name;
+    }
+    public function getBuyablePrice($options = null)
+    {
+        return $this->price;
+    }
+    public function getBuyableWeight($options = null)
+    {
+        return $this->weight;
+    }
+
     public function registerMediaCollections(): void
     {
         $this
@@ -41,7 +60,7 @@ class Product extends Model implements TranslatableContract, HasMedia
 
     public function firstImage()
     {
-        return $this->getFirstMedia('images');
+        return optional($this->getFirstMedia('images'))->getFullUrl() ?? asset('img/cart/thumbinal.png');
     }
 
     public function images()
@@ -52,5 +71,10 @@ class Product extends Model implements TranslatableContract, HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function characters()
+    {
+        return $this->belongsToMany(Character::class, "product_characters");
     }
 }

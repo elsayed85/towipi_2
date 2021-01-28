@@ -122,6 +122,7 @@ button:focus {
       font-size: $font12;
       font-weight: 600;
       border-color: $white;
+      border-radius: 50px;
     }
     .search-form-btn {
       border: none;
@@ -593,6 +594,267 @@ button:focus {
       color: $primary_color;
       margin-top: 20px;
     }
+  }
+}
+
+// Start order process
+.order-process {
+  .steps-process {
+    position: relative;
+    li {
+      text-align: center;
+      font-weight: bold;
+      span {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        background: $white;
+        display: inline-block;
+        border: 1px solid $secondary_color;
+        font-weight: 500;
+        margin-bottom: 5px;
+        position: relative;
+        z-index: 2;
+      }
+      &.current-step {
+        span {
+          background: $main_color;
+          color: $white;
+          border-color: $main_color;
+        }
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 21px;
+      background: $secondary_color;
+      opacity: 0.3;
+      height: 2px;
+      width: 97%;
+      -moz-transform: translate(0, 50%);
+      -o-transform: translate(0, 50%);
+      -webkit-transform: translate(0, 50%);
+      transform: translate(0, 50%);
+    }
+  }
+  .cart-items-list {
+    tr {
+      td {
+        border-bottom: 2px solid $primary_color;
+        padding-top: 20px;
+      }
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .order-summery {
+    border-color: $main_color !important;
+  }
+
+  .product-photo {
+    width: 100px;
+  }
+
+  @include mobile() {
+    .steps-process {
+      &::before {
+        width: 94%;
+      }
+    }
+    .cart-items-list {
+      .product-details {
+        width: 250px;
+      }
+      .actions {
+        width: 100px;
+      }
+    }
+    .order-summery {
+      margin-top: 30px;
+    }
+  }
+  .address {
+    .address-list {
+      li {
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ced4da;
+        .address-name-action {
+          label {
+            font-weight: 600;
+            font-size: $font14;
+            display: flex;
+            align-items: center;
+            input {
+              margin-right: 10px;
+            }
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+      .hidden-address {
+        display: none;
+      }
+    }
+  }
+  .process-success {
+    color: $success_color;
+    font-size: $font22;
+    font-weight: 600;
+    line-height: normal;
+    i {
+      font-size: 60px;
+      margin-right: 20px;
+    }
+  }
+  @include mobile() {
+    .address {
+      hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    }
+    .process-success {
+      flex-direction: column;
+      text-align: center;
+      i {
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+// End order process
+
+// Start User Profile
+.user-profile {
+  .user-icon {
+    font-size: 60px;
+  }
+  .list-group {
+    border-radius: 10px;
+    a {
+      color: $secondary_color;
+      font-weight: 600;
+      font-size: 14px;
+      &:hover {
+        text-decoration: none;
+        color: $main_color;
+      }
+      i {
+        color: $main_color;
+        font-size: 19px;
+        margin-right: 5px;
+      }
+    }
+  }
+  .list-group-item {
+    border-color: $main_color;
+    &.active {
+      background: transparent;
+      a {
+        color: $main_color;
+      }
+    }
+  }
+}
+.user-wishlist {
+  table {
+    tr {
+      td {
+        &:first-child {
+          width: 120px;
+        }
+      }
+    }
+  }
+}
+
+.user-orders {
+  .steps-process {
+    position: relative;
+    li {
+      text-align: center;
+      font-weight: bold;
+      font-size: $font12;
+      span {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        background: $white;
+        display: inline-block;
+        border: 1px solid $secondary_color;
+        font-weight: 500;
+        margin-bottom: 5px;
+        position: relative;
+        z-index: 2;
+      }
+
+      &.finished-step {
+        span {
+          background: $main_color;
+          color: $white;
+          border-color: $main_color;
+        }
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      right: 0;
+      top: 21px;
+      background: $secondary_color;
+      opacity: 0.3;
+      height: 2px;
+      width: 91%;
+      -moz-transform: translate(0, 50%);
+      -o-transform: translate(0, 50%);
+      -webkit-transform: translate(0, 50%);
+      transform: translate(0, 50%);
+    }
+  }
+  .cart-items-list {
+    tr {
+      td {
+        border-bottom: 1px solid #e8e8e8;
+        padding-top: 20px;
+      }
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+// End User Profile
+
+.categoires {
+  .category-box {
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    img {
+      width: 230px;
+      height: 230px;
+      object-fit: cover;
+    }
+    margin-bottom: 30px;
   }
 }
 

@@ -2,14 +2,16 @@
 
 namespace App\Models\Product;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model implements TranslatableContract
+class Category extends Model implements TranslatableContract, HasMedia
 {
-    use Sluggable , Translatable;
+    use Sluggable, Translatable, InteractsWithMedia;
 
     /**
      * The attributes that aren't mass assignable.
@@ -29,9 +31,27 @@ class Category extends Model implements TranslatableContract
         ];
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('icon')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png']);
+    }
+
+    public function getIconAttribute()
+    {
+        return optional($this->getFirstMedia('icon'))->getFullUrl() ?? asset('img/cart/thumbinal.png');
+    }
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function isMain()
+    {
+        return is_null($this->parent_id);
     }
 
     public function getParentsNames()

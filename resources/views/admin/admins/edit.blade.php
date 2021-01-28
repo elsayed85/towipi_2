@@ -16,8 +16,12 @@
             <form action="{{ route('admin.admin.update' , $admin) }}" method="post">
                 @csrf
                 @method("patch")
-                <x-adminlte-input name="name" label="name" placeholder="Name" label-class="text-lightblue"
-                    value="{{ old('name' , $admin->name) }}">
+                <x-adminlte-input name="fname" label="Fisrt Name" placeholder="First Name" label-class="text-lightblue"
+                    value="{{ old('fname' , $admin->fname) }}">
+                </x-adminlte-input>
+
+                <x-adminlte-input name="lname" label="Last Name" placeholder="Last Name" label-class="text-lightblue"
+                    value="{{ old('lname' , $admin->lname) }}">
                 </x-adminlte-input>
 
                 <x-adminlte-input name="email" type="email" label="email" placeholder="email"

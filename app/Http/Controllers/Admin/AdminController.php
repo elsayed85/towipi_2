@@ -89,7 +89,8 @@ class AdminController extends Controller
     public function store(AdminCrudRequest $request)
     {
         $admin = User::create([
-            'name' => $request->name,
+            'fname' => $request->fname,
+            'lname' => $request->lname,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);

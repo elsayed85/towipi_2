@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
         // create first super admin
 
         $superAdmin = User::create([
-            'name' => 'super admin user',
+            'fname' => 'super admin user',
             'email' => "super@gmail.com",
             'password' => Hash::make("password"),
             "country_id" => 63
@@ -30,7 +30,7 @@ class UsersSeeder extends Seeder
         // create first admin
 
         $admin = User::create([
-            'name' => 'admin',
+            'fname' => 'admin',
             'email' => "admin@gmail.com",
             'password' => Hash::make("password"),
             "country_id" => 63
@@ -43,7 +43,7 @@ class UsersSeeder extends Seeder
         // create first user
 
         $user = User::create([
-            'name' => 'user',
+            'fname' => 'user',
             'email' => "user@gmail.com",
             'password' => Hash::make("password"),
             "country_id" => 63

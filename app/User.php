@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Address;
 use App\Models\General\Country;
 use App\Traits\HasWishlist;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'fname', 'lname', 'email', 'password', 'phone', 'country_id', 'email_verified_at'
     ];
 
     /**
@@ -41,6 +42,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function getNameAttribute()
+    {
+        return "{$this->fname} {$this->lname}";
+    }
+
     public function updatePassword($password)
     {
         return $this->update(['password' => Hash::make($password)]);
@@ -49,6 +55,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
     }
 
     // AdminLte

@@ -44,7 +44,7 @@ if (!function_exists('isRoute')) {
      */
     function isRoute($route)
     {
-        return \Route::currentRouteName() == $route;
+        return url()->current() == $route;
     }
 }
 

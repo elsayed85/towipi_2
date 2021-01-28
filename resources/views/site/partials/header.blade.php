@@ -155,8 +155,8 @@
         <div class="container">
             <div class="row justify-content-center align-items-center flex-wrap">
                 <div class="col-12 col-md-3">
-                    <a href="#" class="btn-pink mr-md-3">
-                        Cake Tools
+                    <a href="{{ route('category.index' , ['category' => "cake-tools"]) }}" class="btn-pink mr-md-3">
+                        {{ trans('site.menu.cake_tools') }}
                     </a>
                 </div>
                 <div class="col-12 col-md-2">
@@ -165,8 +165,8 @@
                     </a>
                 </div>
                 <div class="col-12 col-md-3">
-                    <a href="#" class="btn-pink ml-md-3">
-                        Party Supplies
+                    <a href="{{ route('category.index' , ['category' => "party-supplies"]) }}" class="btn-pink ml-md-3">
+                        {{ trans('site.menu.party_supplies') }}
                     </a>
                 </div>
             </div>

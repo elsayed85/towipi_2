@@ -19,6 +19,8 @@
 //   });
 // });
 
+var countable = 1;
+
 $(document).ready(function () {
   "use strict";
   // Get First Child of filter box and show it
@@ -141,3 +143,11 @@ var QtyInput = (function () {
     $input.val(qty);
   });
 })();
+
+
+// Start Append Add New Address Form
+
+$(document).on('click', '#add-new-address, #cancel-address', function(e) {
+  e.preventDefault();
+  $('.hidden-address').toggle();
+});

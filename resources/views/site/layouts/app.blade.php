@@ -17,6 +17,11 @@
 
     @yield('css')
     @livewireStyles
+    <style>
+        .invalid-feedback {
+            display: block;
+        }
+    </style>
 
     <title>
         @yield('title', getSiteName())

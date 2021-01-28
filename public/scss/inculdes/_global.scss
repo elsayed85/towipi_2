@@ -43,6 +43,10 @@ hr {
   margin-bottom: 40px;
 }
 
+.font-weight-600 {
+  font-weight: 600;
+}
+
 .qty-input {
   color: $secondary_color;
   background: $white;
@@ -130,27 +134,44 @@ hr {
 .section {
   padding: 50px 0;
 }
-
+label {
+  font-weight: 600;
+  font-size: $font14;
+}
 .form-control {
   border-radius: unset;
   background: transparent;
-  border-color: #495057;
-  border-radius: 50px;
-  height: calc(2em + 0.75rem + 2px);
+  border-color: #ced4da;
+  border-radius: 0;
+  height: calc(1.8em + 0.75rem + 0px);
+  padding: 1rem;
+  font-size: $font14;
   &:focus {
-    background: $white;
-    border-color: $white;
+    background-color: $white;
+    border-color: $secondary_color;
+    color: $secondary_color;
     box-shadow: unset;
   }
 }
 
 select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  -o-appearance: none; /* opera */
+  appearance: none;
+  position: relative;
+
   &.form-control {
-    height: calc(1.5em + 0.75rem + 0px);
+    height: calc(1.8em + 0.75rem + 0px);
+    padding: 0 10px;
+    background-image: url(/img/icons/down-arrow.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+    background-size: 12px;
     &:focus {
-      background: $white;
-      border-color: $main_color;
-      color: $main_color;
+      background-color: $white;
+      border-color: $secondary_color;
+      color: $secondary_color;
       box-shadow: unset;
     }
   }
@@ -158,6 +179,9 @@ select {
 
 textarea {
   resize: none;
+  &.form-control {
+    border-radius: 0;
+  }
 }
 
 .h-100-vh {
@@ -230,6 +254,24 @@ textarea {
       background: $secondary_color;
       border-color: $secondary_color;
       color: $white;
+    }
+  }
+  @include mobile() {
+    &.btn-info {
+      font-size: $font12;
+      margin-bottom: 5px;
+    }
+    &.btn-outline-info {
+      font-size: $font12;
+      margin-bottom: 5px;
+    }
+    &.btn-danger {
+      font-size: $font12;
+      margin-bottom: 5px;
+    }
+    &.btn-outline-danger {
+      font-size: $font12;
+      margin-bottom: 5px;
     }
   }
 }
@@ -368,4 +410,46 @@ textarea {
     border-bottom: none;
     border-radius: 50px;
   }
+}
+
+.modal {
+  .modal-dialog {
+    // max-width: 600px;
+  }
+}
+
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 ;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: $main_color;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: $main_color;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: $main_color;
 }
