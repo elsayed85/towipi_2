@@ -80,7 +80,7 @@ return array (
     'sec1' => 
     array (
       'description' => '',
-      'title' => '',
+      'title' => 'خدمة العملاء',
     ),
     'sec2' => 
     array (

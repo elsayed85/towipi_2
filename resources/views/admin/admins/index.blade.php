@@ -13,7 +13,8 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email</th>
                     <th>Roles</th>
                     <th>permissions</th>
@@ -48,7 +49,8 @@
     ],
       columns: [
         { data: 'id', name: 'id' },
-        { data: 'name', name: 'name' },
+        { data: 'fname', name: 'fname' },
+        { data: 'lname', name: 'lname' },
         { data: 'email', name: 'email' },
         { data: 'roles', name: 'roles' },
         { data: 'permissions', name: 'permissions' },

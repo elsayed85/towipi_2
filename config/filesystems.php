@@ -1,5 +1,5 @@
 <?php
-
+$websiteSettings = "assets/website_settings";
 return [
 
     /*
@@ -41,6 +41,10 @@ return [
     |
     */
 
+    "names" => [
+        'website_settings' => $websiteSettings
+    ],
+
     'disks' => [
 
         'local' => [
@@ -53,6 +57,11 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+        ],
+
+        'site_settings' => [
+            'driver' => 'local',
+            'root'   => public_path($websiteSettings),
         ],
 
         's3' => [

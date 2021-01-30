@@ -1,14 +1,14 @@
 <?php
 
 return array (
-  'actions' =>
+  'actions' => 
   array (
     'name' => 'Actions',
   ),
   'add_to_cart' => 'Add To cart',
   'add_to_wishlist' => 'Add To Wishlist',
   'added_to_wishlist' => 'Added To Wishlist',
-  'address_info' =>
+  'address_info' => 
   array (
     'address_area' => 'Address',
     'city' => 'City',
@@ -31,7 +31,7 @@ return array (
   'email' => 'Email',
   'favorites' => 'Favorites',
   'fname' => 'First Name',
-  'footer' =>
+  'footer' => 
   array (
     'faqs' => 'FAQ',
   ),
@@ -39,12 +39,12 @@ return array (
   'lname' => 'Last Name',
   'login' => 'Login',
   'logout' => 'Logout',
-  'menu' =>
+  'menu' => 
   array (
     'cake_tools' => 'Cake Tools',
     'party_supplies' => 'Party Supplies',
   ),
-  'msg' =>
+  'msg' => 
   array (
     'address_addedd' => 'Address Addedd Succfully',
     'address_deleted' => 'Address Deleted Succfully',
@@ -52,7 +52,7 @@ return array (
     'password_updated' => 'Password updated succfully',
     'wishlist_deleted' => 'Product Deleted Succfullt from your wishlist',
   ),
-  'nav' =>
+  'nav' => 
   array (
     'about' => 'About',
     'contact' => 'Contact Us',
@@ -70,39 +70,39 @@ return array (
   'remove_from_wishlist' => 'Remove From Wishlist',
   'removed_from_wishlist' => 'Removed From Wishlist',
   'save' => 'Save',
-  'search' =>
+  'search' => 
   array (
     'placeholder' => 'Search for products...',
   ),
-  'services' =>
+  'services' => 
   array (
-    'sec1' =>
+    'sec1' => 
     array (
       'description' => 'You will get support and help to get your order',
       'title' => 'Customer Service',
     ),
-    'sec2' =>
+    'sec2' => 
     array (
       'description' => 'Add your child name and age to the birthday decoration',
       'title' => 'Customize your order',
     ),
-    'sec3' =>
+    'sec3' => 
     array (
       'description' => 'We deliver your order on time',
       'title' => 'Deliver on time',
     ),
-    'sec4' =>
+    'sec4' => 
     array (
       'description' => 'We offer many local and international payment methods',
       'title' => 'many payment options',
     ),
   ),
   'update' => 'Update',
-  'user' =>
+  'user' => 
   array (
     'empty_wishlist' => 'Your wishlist is Empty',
     'orders' => 'Orders',
-    'profile' =>
+    'profile' => 
     array (
       'edit_info' => 'Edit Info',
       'edit_password' => 'Edit Password',

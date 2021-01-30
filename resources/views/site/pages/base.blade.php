@@ -1,7 +1,7 @@
 @extends('site.layouts.app')
 @section('title' , $page->title)
 @section('content')
-<section class="{{ $page->slug }} mt-5">
+<section class="page-title mt-5">
     <div class="container">
         <div class="row">
             <div class="col-12">

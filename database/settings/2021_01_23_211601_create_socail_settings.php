@@ -10,5 +10,8 @@ class CreateSocailSettings extends SettingsMigration
         $this->migrator->add('social.instagram', null);
         $this->migrator->add('social.youtube', null);
         $this->migrator->add('social.pinterest', null);
+        $this->migrator->add('social.twitter', null);
+        $this->migrator->add('social.tiktok', null);
+        $this->migrator->add('social.snapchat', null);
     }
 }

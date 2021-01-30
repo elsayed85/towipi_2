@@ -270,6 +270,11 @@ return [
             'url'  => 'admin/lang',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        [
+            'text' => 'Website Settings',
+            'url'  => 'admin/website/settings',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
     ],
 
     /*

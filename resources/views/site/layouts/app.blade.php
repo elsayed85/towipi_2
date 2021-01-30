@@ -57,6 +57,8 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
 
     <script src="{{ asset('js/sweetalert2@10.js') }}"></script>
+    <script src="//code.tidio.co/rw3ukwxdtobrfotxlqun6b6sfb8krcet.js" async></script>
+
     @yield('js')
     @livewireScripts
 

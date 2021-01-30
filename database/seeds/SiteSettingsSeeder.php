@@ -17,6 +17,9 @@ class SiteSettingsSeeder extends Seeder
         $social->instagram = "instagram.com";
         $social->pinterest = "pinterest.com";
         $social->facebook = "facebook.com";
+        $social->twitter = "twitter.com";
+        $social->tiktok = "tiktok.com";
+        $social->snapchat = "snapchat.com";
         $social->save();
     }
 }

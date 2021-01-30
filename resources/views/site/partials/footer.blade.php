@@ -18,9 +18,9 @@
                 </ul>
                 <ul class="social-media list-unstyled d-flex flex-wrap justify-content-center align-items-center">
                     @foreach ($site_social as $type => $link)
-                    <li>
+                    <li style="margin-top: 11px;">
                         <a href="{{ $link }}">
-                            <img src="{{ asset("img/footer/{$type}.png") }}" alt="{{ $type }}">
+                            <img src="{{ asset("img/footer/{$type}.png") }}" alt="{{ $type }}" style="width: 55px;height: 71px;">
                         </a>
                     </li>
                     @endforeach

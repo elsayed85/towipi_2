@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laratrust\Helper;
 use Yajra\DataTables\DataTables;
@@ -34,6 +35,7 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
             $admins = User::whereRoleIs(['admin', 'super_admin'])->with(['roles', 'permissions'])->latest();
+
             return DataTables::of($admins)
                 ->addIndexColumn()
                 ->addColumn('action', function ($admin) {

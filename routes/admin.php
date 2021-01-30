@@ -23,6 +23,10 @@ Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
 });
 
 
-Route::get('test', function () {
-    unlockSite();
+Route::group(['prefix' => 'website' , 'as' => 'website.'], function () {
+    Route::get('settings', 'WebsiteSettingsController@settings')->name('settings');
+    Route::put('site-name', 'WebsiteSettingsController@ChangeSiteName')->name('change_site_name');
+    Route::put('logos', 'WebsiteSettingsController@changeLogos')->name('change_logos');
+    Route::put('status', 'WebsiteSettingsController@siteStatus')->name('status');
+    Route::put('social', 'WebsiteSettingsController@socialLinks')->name('social_links');
 });
