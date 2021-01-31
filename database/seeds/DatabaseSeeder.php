@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
         ]);
 
-        factory(User::class, 40)->create();
+        factory(User::class, 400)->create();
 
         Category::create([
             'en' => [

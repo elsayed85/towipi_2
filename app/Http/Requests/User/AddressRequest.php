@@ -33,7 +33,7 @@ class AddressRequest extends FormRequest
                 'country_id' => ['sometimes', 'exists:countries,id'],
                 'governorate' => ['sometimes', 'string', 'min:3', 'max:60'],
                 'city' => ['sometimes', 'string', 'min:3', 'max:60'],
-                'address_name' => ['sometimes', 'min:10', 'max:500'],
+                'address_name' => ['sometimes' , 'string', 'min:10', 'max:500'],
                 'notes' => ['sometimes', 'nullable', 'max:5000']
             ];
         } elseif ($this->isMethod('POST')) {
@@ -46,7 +46,7 @@ class AddressRequest extends FormRequest
                 'country_id' => ['required', 'exists:countries,id'],
                 'governorate' => ['required', 'string', 'min:3', 'max:60'],
                 'city' => ['required', 'string', 'min:3', 'max:60'],
-                'address_name' => ['required', 'min:10', 'max:500'],
+                'address_name' => ['required' , 'string', 'min:10', 'max:500'],
                 'notes' => ['nullable', 'max:5000']
             ];
         }

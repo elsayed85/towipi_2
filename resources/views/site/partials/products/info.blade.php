@@ -7,9 +7,9 @@ $inStock = $product->inStock();
     </h1>
     <h2>
         EGP 5.00
-        <span class="badge badge-pill">
+        {{-- <span class="badge badge-pill">
             -25% off
-        </span>
+        </span> --}}
     </h2>
     <hr>
     <div class="row">
