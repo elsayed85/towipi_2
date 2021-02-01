@@ -13,8 +13,8 @@ $inStock = $product->inStock();
     </h2>
     <hr>
 
-    @foreach ($product->options->chunk(ceil($product->options->count() / 2)) as $group)
     <div class="row">
+        @foreach ($product->options->chunk(ceil($product->options->count() / 2)) as $group)
         @foreach ($group as $option)
         <div class="col-12 col-md-6">
             <div class="select-box">
@@ -28,9 +28,9 @@ $inStock = $product->inStock();
             </div>
         </div>
         @endforeach
+        @endforeach
     </div>
 
-    @endforeach
     <hr>
     <div class="quantity">
         <span class="font-weight-bold font-24 main-color">{{ trans('site.qty') }} </span>
