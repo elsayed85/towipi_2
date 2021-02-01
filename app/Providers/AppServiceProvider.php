@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 
             if (auth()->check()) {
                 $view->with([
-                    "wishlist" => auth()->user()->wishlist()->with(["product"])->get()
+                    "wishlist" => auth()->user()->wishlist()->with(["product.translations"])->get()
                 ]);
             }
         });

@@ -1,6 +1,6 @@
 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-heart font-26"></i>
         <span class="count-favorites count wishlist_count">{{ $wishlist->count() }}</span>
     </a>
@@ -17,7 +17,8 @@
                 <a href="{{ route('product.show' , $item->product) }}">
                     {{ $item->product->title }}
                 </a>
-                <a href="#" class="text-danger delete-favorite-btn">
+                <a href="#" class="text-danger delete-favorite-btn remove_wishlist_elemnt"
+                    data-product-id="{{ $item->product->id }}" onclick="removeWishlistElement(this)">
                     <i class="far fa-times-circle"></i>
                 </a>
             </li>

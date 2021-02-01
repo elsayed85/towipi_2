@@ -6,50 +6,34 @@ $inStock = $product->inStock();
         {{ $product->title }}
     </h1>
     <h2>
-        EGP 5.00
+        {{ $product->price }}
         {{-- <span class="badge badge-pill">
             -25% off
         </span> --}}
     </h2>
     <hr>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="select-box">
-                <label for="characters">Characters</label>
-                <select id="characters" class="form-control">
-                    <option selected>Choose</option>
-                    <option>Mickey mouse</option>
-                    <option>Frozen</option>
-                    <option>Super Mario</option>
-                    <option>Moana</option>
-                    <option>Sonic</option>
-                    <option>Paw Patrol</option>
-                    <option>Mickey Mouse</option>
-                    <option>Coco</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="select-box">
-                <label for="size">Cupcake size</label>
-                <select id="size" class="form-control">
-                    <option selected>Choose</option>
-                    <option>Mickey mouse</option>
-                    <option>Frozen</option>
-                    <option>Super Mario</option>
-                    <option>Moana</option>
-                    <option>Sonic</option>
-                    <option>Paw Patrol</option>
-                    <option>Mickey Mouse</option>
-                    <option>Coco</option>
-                </select>
-            </div>
-        </div>
 
+    @foreach ($product->options->chunk(ceil($product->options->count() / 2)) as $group)
+    <div class="row">
+        @foreach ($group as $option)
+        <div class="col-12 col-md-6">
+            <div class="select-box">
+                <label for="characters">{{ $option->name }}</label>
+                <select id="characters" class="form-control">
+                    <option>{{ trans('site.choose') }}</option>
+                    @foreach ($option->values as $value)
+                    <option value="{{ $value->id }}">{{ $value->value }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        @endforeach
     </div>
+
+    @endforeach
     <hr>
     <div class="quantity">
-        <span class="font-weight-bold font-24 main-color">QTY</span>
+        <span class="font-weight-bold font-24 main-color">{{ trans('site.qty') }} </span>
         <div class="qty-input">
             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
             <input class="product-qty" type="number" name="product-qty" @if($inStock) value="1" min="1"
@@ -57,9 +41,9 @@ $inStock = $product->inStock();
             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
         </div>
         @if($inStock)
-        <span class="badge badge-pill badge-success font-18 ml-3">In stock</span>
+        <span class="badge badge-pill badge-success font-18 ml-3">{{ trans('site.in_stock') }} </span>
         @else
-        <span class="badge text-white bg-danger font-18 ml-3">Out Of Stock</span>
+        <span class="badge text-white bg-danger font-18 ml-3">{{ trans('site.out_of_stock') }}</span>
         @endif
     </div>
     <hr>
@@ -68,7 +52,7 @@ $inStock = $product->inStock();
             @auth
             @role(['user'])
             <button type="button" class="btn btn-sm btn-info rounded-pill mr-3">
-                <i class="fas fa-shopping-cart mr-2"></i> Add to cart
+                <i class="fas fa-shopping-cart mr-2"></i> {{ trans('site.add_to_cart') }}
             </button>
             @livewire('site.wishlist', ['product' => $product])
             @endrole
@@ -77,14 +61,14 @@ $inStock = $product->inStock();
     </div>
     <hr>
     <div class="details">
-        <h3>Product Details </h3>
+        <h3>{{ trans('site.product_details') }} </h3>
         <p>
             {{ $product->description }}
-            <a href="#" class="main-color d-block font-weight-bold">Read More</a>
+            <a href="#" class="main-color d-block font-weight-bold">{{ trans('site.read_more') }} </a>
         </p>
         <div class="share-to">
             <span>
-                Share :
+                {{ trans('site.share') }}
             </span>
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}">
                 <i class="fab fa-facebook-f"></i>

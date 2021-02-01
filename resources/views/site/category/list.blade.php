@@ -8,7 +8,7 @@
             <!-- .col-md-4 -->
             <div class="col-12 col-md-4 text-center">
                 <div class="category-box">
-                    <a href="#">
+                    <a href="{{ route('product.index' , ['category' => $category->id]) }}">
                         @if(!is_null($category->icon))
                         <img class="rounded-circle" src="{{ $category->icon }}" alt="photo">
                         @endif

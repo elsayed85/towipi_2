@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Product\Character;
 use Illuminate\Database\Seeder;
 
-class CharacterSeeder extends Seeder
+class VariantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class CharacterSeeder extends Seeder
      */
     public function run()
     {
-        factory(Character::class , 200)->create();
+        //
     }
 }

@@ -25,4 +25,14 @@ class Country extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function governorates()
+    {
+        return $this->hasMany(Governorate::class);
+    }
+
+    public function scopeShippingIsEnabled($query)
+    {
+        return $query->where('enable_shipping', true);
+    }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Models\Product;
 
+use App\Casts\Money;
 use App\Traits\HasStock;
 use App\Traits\Wishlistable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Cknow\Money\MoneyCast;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Gloudemans\Shoppingcart\CanBeBought;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
@@ -24,6 +26,10 @@ class Product extends Model implements TranslatableContract, HasMedia, Buyable
     protected $guarded = [];
 
     public $translatedAttributes = ['title', 'description'];
+
+    protected $casts = [
+        'price' => MoneyCast::class
+    ];
 
     public function sluggable(): array
     {
@@ -76,5 +82,72 @@ class Product extends Model implements TranslatableContract, HasMedia, Buyable
     public function characters()
     {
         return $this->belongsToMany(Character::class, "product_characters");
+    }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOptions()
+    {
+        return (!$this->options->isEmpty());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions(Collection $options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOption(OptionInterface $option)
+    {
+        if (!$this->hasOption($option)) {
+            $this->options->push($option);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeOption(OptionInterface $option)
+    {
+        if ($this->hasOption($option)) {
+            foreach ($this->options as $key => $item) {
+                if ($item->getKey() === $option->getKey()) {
+                    $this->options->forget($key);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOption(OptionInterface $option)
+    {
+        return $this->options->contains($option);
     }
 }

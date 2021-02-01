@@ -12,7 +12,7 @@ class AddressController extends Controller
 {
     public function index()
     {
-        $countries = Country::all();
+        $countries = Country::ShippingIsEnabled()->get();
         $addresses = auth()->user()->addresses()->latest()->paginate(10);
         return view('user.address', get_defined_vars());
     }
@@ -35,5 +35,10 @@ class AddressController extends Controller
         abort_unless($address->user_id == auth()->id(), 403);
         $address->delete();
         return back()->withSuccess(trans('site.msg.address_deleted'));
+    }
+
+    public function getGovernorates(Request $request)
+    {
+        return \response()->json(['governorates' => optional(Country::find($request->country_id))->governorates ?? []]);
     }
 }

@@ -82,7 +82,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapUserRoutes()
     {
-        Route::middleware(['web',  'auth', 'site_status', 'role:user', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
+        Route::middleware(['web',  'auth', 'site_status', 'role:user', 'user_is_active', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
             ->prefix(LaravelLocalization::setLocale() . '/user')
             ->as('user.')
             ->namespace($this->UserNamespace)

@@ -133,7 +133,7 @@
                                                 <select class="form-control" id="country" name="country_id">
                                                     <option selected>Select one</option>
                                                     @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}" @if(old('countr_id' , auth()->
+                                                    <option value="{{ $country->id }}" @if(old('country_id' , auth()->
                                                         user()->country_id) == $country->id)
                                                         selected @endif>{{ $country->name }}
                                                     </option>
@@ -151,11 +151,16 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label
-                                                    for="governorate">{{ trans('site.address_info.governorate') }}</label>
-                                                <input type="text" class="form-control" id="optional_phone"
-                                                    aria-describedby="helpId" placeholder="" autocomplete="off"
-                                                    name="governorate" value="{{ old('governorate') }}">
-                                                @error('governorate')
+                                                    for="governorates">{{ trans('site.address_info.governorate') }}</label>
+                                                <select class="form-control" id="governorates" name="governorate_id">
+                                                    @foreach (auth()->user()->country->governorates as $gov)
+                                                    <option value="{{ $gov->id }}" @if(old('governorate_id')==$gov->id)
+                                                        selected @endif>
+                                                        {{ $gov->name_en }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('governorate_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -167,7 +172,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="city">{{ trans('site.address_info.city') }}</label>
-                                                <input type="text" class="form-control" id="optional_phone"
+                                                <input type="text" class="form-control" id="city"
                                                     aria-describedby="helpId" placeholder="" autocomplete="off"
                                                     name="city" value="{{ old('city') }}">
                                                 @error('city')
@@ -226,4 +231,33 @@
         </div>
     </div>
 </section>
+@endsection
+@section('js')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).ready(function () {
+        $('#country').on('change',function(e) {
+            var country_id = e.target.value;
+            $.ajax({
+
+                url:"{{ route('user.get_governorates') }}",
+                type:"POST",
+                data: {
+                    country_id: country_id
+                },
+                success:function (data) {
+                    $('#governorates').empty();
+                    $.each(data.governorates,function(index,governorate){
+                        $('#governorates').append('<option value="'+governorate.id+'">' + governorate.name_en +'</option>');
+                    })
+                }
+            })
+        });
+
+    });
+</script>
 @endsection

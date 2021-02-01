@@ -15,6 +15,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
+            $table->boolean('enable_shipping')->default(false);
             $table->char('iso', 2);
             $table->string('name', 80);
             $table->string('nicename', 80)->nullable();

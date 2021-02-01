@@ -20,9 +20,8 @@ class CreateAddressesTable extends Migration
             $table->string('lname');
             $table->string('phone_1');
             $table->string('phone_2');
-            $table->unsignedBigInteger('country_id')->nullable();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');
-            $table->string('governorate');
+            $table->unsignedBigInteger('governorate_id')->nullable();
+            $table->foreign('governorate_id')->references('id')->on('governorates')->onDelete('set null');
             $table->string('city');
             $table->mediumText('address_name');
             $table->longText('notes')->nullable();

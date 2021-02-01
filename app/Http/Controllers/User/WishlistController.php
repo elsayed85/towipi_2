@@ -23,7 +23,18 @@ class WishlistController extends Controller
         return back()->withSuccess(trans('site.msg.wishlist_deleted'));
     }
 
-    public function moveToCart(Wishlist $wishlist){
+    public function destroyAjax(Request $request)
+    {
+        $wishlisted = auth()->user()->wishlist()->whereProductId($request->product_id)->first();
+        if ($wishlisted) {
+            $wishlisted->delete();
+            return response()->json(['success' => true, 'wishlist_count' => auth()->user()->wishlist()->count()]);
+        }
+        return response()->json(['success' => false]);
+    }
 
+    public function moveToCart(Wishlist $wishlist)
+    {
+        //
     }
 }

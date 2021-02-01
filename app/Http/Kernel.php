@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Livewire\LivewireLocaleMiddleware;
 use App\Http\Middleware\Site\SiteStatusMiddleware;
+use App\Http\Middleware\UserIsActiveMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -78,5 +79,7 @@ class Kernel extends HttpKernel
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
 
         'site_status' => SiteStatusMiddleware::class,
+
+        'user_is_active' => UserIsActiveMiddleware::class,
     ];
 }

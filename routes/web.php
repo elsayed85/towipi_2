@@ -12,6 +12,7 @@ Route::get('faq', 'FaqController')->name('faq');
 
 Route::get('categories/{category:slug}', "CategoryController@index")->name('category.index');
 Route::get('product/{product:slug}', "ProductController@show")->name('product.show');
+Route::get('product', "ProductController@index")->name('product.index');
 
 
 //fawry
@@ -27,7 +28,7 @@ Route::get('test', function () {
 
     $fawry = app("fawry");
 
-    $payment = $fawry->chargeViaFawry($refNumber , $user , "5543474002259998" , 100 , Product::all()->random(5)->toArray() , "desc here");
+    $payment = $fawry->chargeViaFawry($refNumber, $user, "5543474002259998", 100, Product::all()->random(5)->toArray(), "desc here");
 
     dd($payment);
     //dd(app("fawry")->deleteCardToken($user));

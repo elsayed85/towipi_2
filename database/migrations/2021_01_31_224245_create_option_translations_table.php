@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCharacterTranslationsTable extends Migration
+class CreateOptionTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCharacterTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('character_translations', function (Blueprint $table) {
+        Schema::create('product_option_translations', function (Blueprint $table) {
             $table->id();
             $table->string('locale')->index();
 
-            // Foreign key to the main model
-            $table->unsignedBigInteger('character_id');
-            $table->unique(['character_id', 'locale']);
-            $table->foreign('character_id')->references('id')->on('characters')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedBigInteger('option_id');
+            $table->unique(['option_id', 'locale']);
+            $table->foreign('option_id')->references('id')->on('product_options')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->string('name');
         });
@@ -33,6 +32,6 @@ class CreateCharacterTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('character_translations');
+        Schema::dropIfExists('option_translations');
     }
 }

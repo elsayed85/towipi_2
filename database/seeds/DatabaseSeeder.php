@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\General\Country;
 use App\Models\Permission;
 use App\Models\Product\Category;
 use App\User;
@@ -18,10 +19,13 @@ class DatabaseSeeder extends Seeder
             SiteSettingsSeeder::class,
             LaratrustSeeder::class,
             CountrySeeder::class,
+            GovernorateSeeder::class,
             FaqSeeder::class,
             SitePageSeeder::class,
             UsersSeeder::class,
         ]);
+
+        Country::whereiso("EG")->update(['enable_shipping' => true]);
 
         factory(User::class, 400)->create();
 
@@ -38,7 +42,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            CharacterSeeder::class,
             ProductCategorySeeder::class,
             ProductSeeder::class
         ]);

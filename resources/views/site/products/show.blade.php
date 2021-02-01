@@ -24,5 +24,7 @@
         </div>
     </div>
 </section>
+@if($related->count())
 @include('site.partials.products.related')
+@endif
 @endsection

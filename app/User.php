@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'fname', 'lname', 'email', 'password', 'phone', 'country_id', 'email_verified_at' , 'payment_card_last_four' , 'payment_card_brand' , 'payment_card_fawry_token'
+        'fname', 'lname', 'email', 'password', 'phone', 'country_id', 'email_verified_at', 'payment_card_last_four', 'payment_card_brand', 'payment_card_fawry_token', 'is_active'
     ];
 
     /**
@@ -62,12 +62,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class)->withDefault();
     }
 
     public function addresses()
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function scopeActive(Builder $q)
+    {
+        return $q->whereIsActive(true);
     }
 
     // AdminLte

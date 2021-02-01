@@ -137,8 +137,8 @@
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline search-form">
-                    <input class="form-control mr-sm-2" type="search"
+                <form class="form-inline search-form" action="{{ route('product.index') }}">
+                    <input name="product_title" value="{{ request('product_title') }}" class="form-control mr-sm-2" type="search"
                         placeholder="{{ trans('site.search.placeholder') }}" aria-label="Search">
 
                     <button class="search-form-btn my-2 my-sm-0" type="submit">

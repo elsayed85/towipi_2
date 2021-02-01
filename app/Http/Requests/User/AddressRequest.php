@@ -30,10 +30,9 @@ class AddressRequest extends FormRequest
                 "lname" => ['sometimes', 'nullable', 'min:3', 'max:50'],
                 "phone_1" => ['sometimes', 'min:8', 'max:20'],
                 "phone_2" => ['sometimes', 'nullable', 'min:8', 'max:20'],
-                'country_id' => ['sometimes', 'exists:countries,id'],
-                'governorate' => ['sometimes', 'string', 'min:3', 'max:60'],
+                'governorate_id' => ['sometimes', 'numeric', 'exists:governorates,id'],
                 'city' => ['sometimes', 'string', 'min:3', 'max:60'],
-                'address_name' => ['sometimes' , 'string', 'min:10', 'max:500'],
+                'address_name' => ['sometimes', 'string', 'min:10', 'max:500'],
                 'notes' => ['sometimes', 'nullable', 'max:5000']
             ];
         } elseif ($this->isMethod('POST')) {
@@ -43,10 +42,9 @@ class AddressRequest extends FormRequest
                 "lname" => ['nullable', 'min:3', 'max:50'],
                 "phone_1" => ['required', 'min:8', 'max:20'],
                 "phone_2" => ['nullable', 'min:8', 'max:20'],
-                'country_id' => ['required', 'exists:countries,id'],
-                'governorate' => ['required', 'string', 'min:3', 'max:60'],
+                'governorate_id' => ['required', 'numeric', 'exists:governorates,id'],
                 'city' => ['required', 'string', 'min:3', 'max:60'],
-                'address_name' => ['required' , 'string', 'min:10', 'max:500'],
+                'address_name' => ['required', 'string', 'min:10', 'max:500'],
                 'notes' => ['nullable', 'max:5000']
             ];
         }

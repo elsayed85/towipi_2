@@ -22,7 +22,9 @@ return array (
     'shipping_notes' => '',
     'title' => '',
   ),
+  'buy' => '',
   'cancel' => '',
+  'choose' => '',
   'confirm_pass' => '',
   'country' => '',
   'cureent_pass' => '',
@@ -37,6 +39,7 @@ return array (
     'faqs' => '',
   ),
   'forget_yout_password' => '',
+  'in_stock' => '',
   'lname' => '',
   'login' => 'تسجيل الدخول',
   'logout' => '',
@@ -47,6 +50,7 @@ return array (
   ),
   'msg' => 
   array (
+    'account_is_not_active' => '',
     'address_addedd' => '',
     'address_deleted' => '',
     'info_updated' => '',
@@ -61,11 +65,18 @@ return array (
   ),
   'new_pass' => '',
   'no_categories_found' => '',
+  'no_products_exist' => '',
   'or' => '',
+  'out_of_stock' => '',
   'password' => '',
   'phone_number' => '',
   'photo' => '',
+  'product_details' => '',
+  'products' => '',
+  'qty' => '',
+  'read_more' => '',
   'register' => '',
+  'related_products' => '',
   'remember_me' => '',
   'remove' => '',
   'remove_from_wishlist' => '',
@@ -98,6 +109,7 @@ return array (
       'title' => '',
     ),
   ),
+  'share' => '',
   'update' => '',
   'user' => 
   array (
@@ -112,4 +124,5 @@ return array (
     'shipping_address' => '',
     'wishlist' => '',
   ),
+  'view' => '',
 );

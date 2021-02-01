@@ -46,7 +46,7 @@
     @include('site.partials.footer')
 
     <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     <!-- bootstrap -->
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
@@ -98,7 +98,7 @@
             <a href="` + data.url + `">
                 ` + data.product_title + `
             </a>
-            <a href="#" class="text-danger delete-cart-btn">
+            <a href="#" class="text-danger delete-cart-btn remove_wishlist_elemnt" data-product-id=` + data.product_id  + ` onclick="removeWishlistElement(this)">
                 <i class="far fa-times-circle"></i>
             </a>
         </li>
@@ -119,6 +119,25 @@
             title: data.message
         })
     });
+
+    function removeWishlistElement(el){
+        var product_id = $(el).data('product-id')
+        var wishlistCounter = $(".wishlist_count")
+        $.ajax({
+            type:'POST',
+            url:'{{ route('user.wishlist.destroy_ajax') }}',
+            data: {
+                _token : "{{ csrf_token() }}",
+                product_id : product_id
+            },
+            success:function(data) {
+                if(data['success'] == true){
+                    $(el).parent().remove()
+                    wishlistCounter.text(data.wishlist_count)
+                }
+            }
+        });
+    }
     </script>
 </body>
 

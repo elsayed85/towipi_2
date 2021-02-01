@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('video_url')->nullable();
             $table->integer('amount')->default(0);
+            $table->string('price');
             $table->string('slug');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->on('categories')->references('id')->nullOnDelete();
