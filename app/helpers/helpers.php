@@ -3,10 +3,10 @@
 use App\Http\Settings\GeneralSettings;
 use App\Http\Settings\SocialSettings;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Boolean;
 
-if (!function_exists('qlog')) {
+if (!function_exists('localUrl')) {
     function localUrl($url = "")
     {
         return \LaravelLocalization::localizeUrl($url);
@@ -45,6 +45,17 @@ if (!function_exists('isRoute')) {
     function isRoute($route)
     {
         return url()->current() == $route;
+    }
+}
+
+if (!function_exists('isRouteName')) {
+    /**
+     * @param $route
+     * @return bool
+     */
+    function isRouteName($name)
+    {
+        return Route::currentRouteName() == $name;
     }
 }
 

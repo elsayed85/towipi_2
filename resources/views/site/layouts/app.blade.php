@@ -50,6 +50,8 @@
 
     <!-- bootstrap -->
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- aos -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -12,7 +12,7 @@
                 <div class="mt-4 address">
                     <div class="text-right mb-3">
                         <a id="add-new-address" href="#" class="btn btn-danger btn-sm rounded-pill font-12">
-                            <i class="fas fa-plus mr-2"></i> Add New Address
+                            <i class="fas fa-plus mr-2"></i> {{ trans('site.add_new_addresss') }}
                         </a>
                     </div>
                     <ul class="list-unstyled address-list">

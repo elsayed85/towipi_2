@@ -1,5 +1,6 @@
 <?php
 
+use App\GPRMC;
 use App\Models\Product\Product;
 use App\User;
 use Illuminate\Support\Facades\Route;

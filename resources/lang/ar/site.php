@@ -5,6 +5,7 @@ return array (
   array (
     'name' => '',
   ),
+  'add_new_addresss' => '',
   'add_to_cart' => '',
   'add_to_wishlist' => '',
   'added_to_wishlist' => '',
@@ -24,14 +25,31 @@ return array (
   ),
   'buy' => '',
   'cancel' => '',
+  'cart' => 
+  array (
+    'cart_is_cleared' => '',
+    'is_empty' => '',
+    'name' => '',
+    'product_addedd' => '',
+    'product_removed' => '',
+  ),
+  'checkout' => 
+  array (
+    'step1' => '',
+    'step2' => '',
+    'step3' => '',
+    'step4' => '',
+  ),
   'choose' => '',
   'confirm_pass' => '',
+  'continue' => '',
   'country' => '',
   'cureent_pass' => '',
   'current_pass' => '',
   'dashboard' => '',
   'details' => '',
   'email' => '',
+  'error' => '',
   'favorites' => '',
   'fname' => '',
   'footer' => 
@@ -53,7 +71,14 @@ return array (
     'account_is_not_active' => '',
     'address_addedd' => '',
     'address_deleted' => '',
+    'cart_msg' => '',
     'info_updated' => '',
+    'no_orders_yet' => '',
+    'order' => 
+    array (
+      'cart_is_empty' => '',
+      'order_created' => '',
+    ),
     'password_updated' => '',
     'wishlist_deleted' => '',
   ),
@@ -67,6 +92,10 @@ return array (
   'no_categories_found' => '',
   'no_products_exist' => '',
   'or' => '',
+  'order' => 
+  array (
+    'submit' => '',
+  ),
   'out_of_stock' => '',
   'password' => '',
   'phone_number' => '',

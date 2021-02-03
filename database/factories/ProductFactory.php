@@ -14,6 +14,7 @@ $factory->define(Product::class, function (Faker $faker) {
         "video_url" => $faker->url,
         'category_id' => Category::all()->random()->id,
         'price' => rand(100, 5000),
+        'discount_percent' => rand(10, 60),
         'en' => [
             'title' => $faker->sentence(),
             'description' => $faker->paragraph(3)

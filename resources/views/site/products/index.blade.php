@@ -19,9 +19,11 @@
                     <!-- .product-card -->
                     <div class="col-12 col-md-4">
                         <div class="product-card">
+                            @if($product->hasDiscount())
                             <span class="has-offer">
-                                -25% off
+                                {{ trans('site.discount.percent' , ['discount' => $product->discount_percent]) }}
                             </span>
+                            @endif
                             <a href="{{ route('product.show' , $product) }}">
                                 <img src="{{ $product->firstImage() }}" alt="dummy">
                                 <h3>

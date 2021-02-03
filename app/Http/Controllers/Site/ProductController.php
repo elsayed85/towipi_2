@@ -53,7 +53,7 @@ class ProductController extends Controller
         $product = $product->load(['options' => function ($q) {
             return $q->with(['translations', 'values.translations']);
         }]);
-        $related = $product->category->allProducts()->get();
+        $related = $product->category->allProducts()->with(['translations' , 'media'])->get();
         return view('site.products.show', ['product' => $product, 'related' => $related]);
     }
 }

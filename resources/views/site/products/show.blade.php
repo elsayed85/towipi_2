@@ -1,5 +1,8 @@
 @extends('site.layouts.app')
 @section('title' , $product->title)
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+@endsection
 @section('content')
 <section class="product-view mt-5">
     <div class="container">
@@ -27,4 +30,11 @@
 @if($related->count())
 @include('site.partials.products.related')
 @endif
+@endsection
+@section('js')
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script>
+    $('select').selectpicker();
+</script>
 @endsection

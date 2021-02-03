@@ -8,6 +8,8 @@
                 @include('user.partials.sidebar')
             </div>
             <div class="col-12 col-md-8">
+                @if($orders->total())
+                @foreach ($orders as $order)
                 <div class="p-3 border rounded">
                     <div class="mb-4 border-bottom pb-3">
                         <span class="d-flex align-items-center justify-content-between flex-wrap">
@@ -15,48 +17,10 @@
                             <span>payment method: PayPal</span>
                         </span>
                         <span class="d-flex align-items-center justify-content-between flex-wrap">
-                            <span>Order number:#125636</span>
-                            <span>Total: EGP 380</span>
+                            <span>Order number:#{{ $order->order_number }}</span>
+                            <span>Total: {{ $order->total }}</span>
                         </span>
                     </div>
-                    <ul class="list-unstyled steps-process d-flex align-items-center justify-content-between flex-wrap">
-                        <li class="finished-step">
-                            <span>
-                                1
-                            </span>
-                            <br>
-                            Order
-                            placed
-                        </li>
-                        <li class="finished-step">
-                            <span>
-                                2
-                            </span>
-                            <br>
-                            Confirmed
-                        </li>
-                        <li class="finished-step">
-                            <span>
-                                3
-                            </span>
-                            <br>
-                            Ready for shipping
-                        </li>
-                        <li>
-                            <span>
-                                4
-                            </span>
-                            <br>
-                            Shipped
-                        </li>
-                        <li>
-                            <span>
-                                5
-                            </span>
-                            <br>
-                            Delivered
-                        </li>
-                    </ul>
 
                     <div class="table-responsive">
                         <table class="table table-borderless cart-items-list">
@@ -154,6 +118,11 @@
                         </table>
                     </div>
                 </div>
+                @endforeach
+                {{ $orders->render() }}
+                @else
+                {{ trans('site.msg.no_orders_yet') }}
+                @endif
             </div>
         </div>
     </div>

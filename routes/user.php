@@ -17,8 +17,20 @@ Route::group(['prefix' => 'wishlist', 'as' => 'wishlist.'], function () {
 });
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
-    Route::get('/', "CartController@index")->name('index');
+    Route::post('add/{product}', "CartController@store")->name('store');
+    Route::delete('remove/{item}', "CartController@remove")->name('remove');
+    Route::post('clear', "CartController@clear")->name('clear');
 });
+
+Route::group(['prefix' => 'checkout', 'as' => 'checkout.'], function () {
+    Route::get('/', 'CheckoutController@getCheckout')->name('index');
+    Route::post('/create-order', 'CheckoutController@checkout')->name('checkout');
+    Route::get('{order}/shipping', 'CheckoutController@shipping')->name('shipping');
+    Route::post('{order}/shipping/add-new-address', 'CheckoutController@addNewAddress')->name('add_new_address');
+    Route::post('{order}/shipping/select-address', 'CheckoutController@selectAddress')->name('select_address');
+    Route::get('{order}/payment', 'CheckoutController@payment')->name('payment');
+});
+
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
     Route::get('/', "ProfileController@index")->name('index');

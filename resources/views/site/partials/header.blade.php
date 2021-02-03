@@ -56,64 +56,46 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart font-26"></i>
-                            <span class="count-cart count">4</span>
+                            <span class="count-cart count">{{ $cart->count() }}</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <ul class="list-unstyled w-100 favorites-list cart-list">
                                 <li class="d-flex justify-content-between align-items-center pb-2">
                                     <h6 class="font-13 mb-0">
-                                        Cart <i class="fas fa-shopping-cart ml-1"></i>
+                                        {{ trans('site.cart.name') }} <i class="fas fa-shopping-cart ml-1"></i>
                                     </h6>
-                                    <span class="font-12 badge badge-dark">25</span>
+                                    <span class="font-12 badge badge-dark">
+                                        {{ $cart->count() }}
+                                    </span>
+                                    <form action="{{ route('user.cart.clear') }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-primary btn-sm text-center" type="submit">Clear</button>
+                                    </form>
                                 </li>
+                                @foreach ($cart as $item)
+                                @if($product = $item->model)
                                 <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
+                                    <a href="{{ route('product.show' , $product) }}">
+                                        {{ $product->title }}
                                     </a>
-                                    <a href="#" class="text-danger delete-cart-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
+                                    <form action="{{ route('user.cart.remove' , $item->rowId) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="text-danger delete-cart-btn btn">
+                                            <i class="far fa-times-circle"></i>
+                                        </button>
+                                    </form>
                                 </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-cart-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-cart-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-cart-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-cart-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a href="#">
-                                        - Lorem ipsum dolor sit amet consectetur...
-                                    </a>
-                                    <a href="#" class="text-danger delete-cart-btn">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
-                                </li>
+                                @endif
+                                @endforeach
+
+                                @if($cart->count())
+                                <a href="{{ route('user.checkout.index') }}">
+                                    <button class="btn btn-primary btn-block text-center">checkout</button>
+                                </a>
+                                @else
+                                {{ trans('site.cart.is_empty') }}
+                                @endif
                             </ul>
                         </div>
 
@@ -138,8 +120,8 @@
                     </li>
                 </ul>
                 <form class="form-inline search-form" action="{{ route('product.index') }}">
-                    <input name="product_title" value="{{ request('product_title') }}" class="form-control mr-sm-2" type="search"
-                        placeholder="{{ trans('site.search.placeholder') }}" aria-label="Search">
+                    <input name="product_title" value="{{ request('product_title') }}" class="form-control mr-sm-2"
+                        type="search" placeholder="{{ trans('site.search.placeholder') }}" aria-label="Search">
 
                     <button class="search-form-btn my-2 my-sm-0" type="submit">
                         <i class="fa fas fa-search"></i>

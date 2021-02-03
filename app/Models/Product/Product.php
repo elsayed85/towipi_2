@@ -7,6 +7,7 @@ use App\Traits\HasStock;
 use App\Traits\Wishlistable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use BeyondCode\Vouchers\Traits\HasVouchers;
 use Cknow\Money\MoneyCast;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Gloudemans\Shoppingcart\CanBeBought;
@@ -17,7 +18,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements TranslatableContract, HasMedia, Buyable
 {
-    use Translatable, InteractsWithMedia, HasStock, Sluggable, Wishlistable, CanBeBought;
+    use Translatable, InteractsWithMedia, HasStock, Sluggable, Wishlistable, CanBeBought, HasVouchers;
     /**
      * The attributes that aren't mass assignable.
      *
@@ -28,7 +29,8 @@ class Product extends Model implements TranslatableContract, HasMedia, Buyable
     public $translatedAttributes = ['title', 'description'];
 
     protected $casts = [
-        'price' => MoneyCast::class
+        'price' => MoneyCast::class,
+        'discount_percent' => 'integer'
     ];
 
     public function sluggable(): array
@@ -149,5 +151,16 @@ class Product extends Model implements TranslatableContract, HasMedia, Buyable
     public function hasOption(OptionInterface $option)
     {
         return $this->options->contains($option);
+    }
+
+    public function hasDiscount()
+    {
+        return !is_null($this->discount_percent) && $this->discount_percent > 0;
+    }
+
+    public function setDiscountPercent($percent)
+    {
+        $this->discount_percent = (int) $percent;
+        return $this;
     }
 }

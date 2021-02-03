@@ -9,6 +9,9 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        return view('user.orders.index');
+        $orders = auth()->user()->orders()->latest()->paginate(5);
+        return view('user.orders.index' , [
+            'orders' => $orders
+        ]);
     }
 }

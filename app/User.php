@@ -4,7 +4,9 @@ namespace App;
 
 use App\Models\Address;
 use App\Models\General\Country;
+use App\Models\Product\Order;
 use App\Traits\HasWishlist;
+use BeyondCode\Vouchers\Traits\CanRedeemVouchers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +16,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, LaratrustUserTrait, HasWishlist;
+    use Notifiable, LaratrustUserTrait, HasWishlist, CanRedeemVouchers;
 
     /**
      * The attributes that are mass assignable.
@@ -68,6 +70,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function addresses()
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     public function scopeActive(Builder $q)

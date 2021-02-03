@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Payment\Fawry;
 use App\Models\General\Page;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -43,7 +44,8 @@ class AppServiceProvider extends ServiceProvider
 
             if (auth()->check()) {
                 $view->with([
-                    "wishlist" => auth()->user()->wishlist()->with(["product.translations"])->get()
+                    "wishlist" => auth()->user()->wishlist()->with(["product.translations"])->get(),
+                    'cart' => Cart::Content()
                 ]);
             }
         });
