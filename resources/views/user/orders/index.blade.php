@@ -10,109 +10,101 @@
             <div class="col-12 col-md-8">
                 @if($orders->total())
                 @foreach ($orders as $order)
+                @php
+                $payment = optional($order->payment);
+                @endphp
                 <div class="p-3 border rounded">
                     <div class="mb-4 border-bottom pb-3">
                         <span class="d-flex align-items-center justify-content-between flex-wrap">
-                            <span>Purchasing date: Jan 20, 2021</span>
-                            <span>payment method: PayPal</span>
+                            @if($payment)
+                            <span>{{ trans('site.purchasing_date') }} {{ $payment->created_at->format("Y-m-d") }}</span>
+                            <span>{{ trans('site.payment_method:') }} {{ $payment->method }}</span>
+                            @else
+                            <span>{{ trans('site.msg.order.not_paied_yet') }}</span>
+                            @endif
                         </span>
                         <span class="d-flex align-items-center justify-content-between flex-wrap">
-                            <span>Order number:#{{ $order->order_number }}</span>
-                            <span>Total: {{ $order->total }}</span>
+                            <span>{{ trans('site.order_number') }} #{{ $order->order_number }}</span>
+                            <span>{{ trans('order.total_after') }} {{ $order->total }}</span>
                         </span>
                     </div>
-
+                    @include('user.partials.orders.states' , ['order' => $order])
                     <div class="table-responsive">
                         <table class="table table-borderless cart-items-list">
                             <thead>
                                 <tr>
-                                    <th scope="col"> Photo</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">{{ trans('site.photo') }}</th>
+                                    <th scope="col">{{ trans('site.details') }}</th>
+                                    <th scope="col">{{ trans('site.actions.name') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($order->items as $item)
                                 <tr>
                                     <td>
                                         <div class="product-photo">
-                                            <img src="{{ asset('img/cart/thumbinal.png') }}" alt="dummy">
+                                            <img src="{{ $item->product->firstImage() }}" alt="dummy">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="product-details">
                                             <h6 class="font-12 text-capitalize main-color font-weight-bold">
-                                                Mickey and Minnie mouse cupcake <br> topper and wrapper
+                                                {{ $item->product->title }}
                                             </h6>
-                                            <form action="">
-                                                <label class="mb-0">Rate this product:</label>
-                                                <select name="rate" id="rate" class="form-control mb-2 mt-2">
-                                                    <option value="1">1 Star</option>
-                                                    <option value="2">2 Star</option>
-                                                    <option value="3">3 Star</option>
-                                                    <option value="4">4 Star</option>
-                                                    <option value="5">5 Star</option>
-                                                </select>
-                                                <div class="form-group">
-                                                    <textarea class="form-control  " id="note" rows="2"></textarea>
+                                            @if($payment)
+                                            @if($item->complaints_count > 0)
+                                            <span class="text-danger">{{ trans('site.order.complaints_count') }} :
+                                                {{ $item->complaints_count }} <br></span>
+                                            @endif
+                                            @if($returnedIitem = $item->returned)
+                                            <span class="text-info">
+                                                @if($returnedIitem->isWaitingForAccept())
+                                                {{ trans('site.return_item.status.waiting_msg') }}
+                                                @elseif($returnedIitem->isAccepted())
+                                                {{ trans('site.return_item.status.accepted_msg') }}
+                                                @elseif($returnedIitem->isRejected())
+                                                {{ trans('site.return_item.status.rejected_msg') }}
+                                                @endif
+                                            </span>
+                                            @endif
+                                            @if($rate = $item->rates->first())
+                                            <p>
+                                                <div class="d-flex align-items-center">
+                                                    {{ trans('site.rate') }} : {{ $rate->value }}
                                                 </div>
-                                                <button class="btn btn-sm btn-danger font-11 rounded-pill">Rate</button>
-                                            </form>
+                                                <p class="comment">
+                                                    {{ $rate->review }}
+                                                </p>
+                                            </p>
+                                            @else
+                                            @include('user.partials.orders.addRateForm')
+                                            @endif
+                                            @endif
                                         </div>
                                     </td>
                                     <td>
                                         <div class="actions ">
-                                            <a href="#" class="mb-1 btn btn-sm btn-secondary font-10 rounded-pill mr-2">
-                                                FILE A COMPLAINT
-                                            </a>
+                                            @if($payment)
+                                            <button class="mb-1 btn btn-sm btn-secondary font-10 rounded-pill mr-2"
+                                                data-toggle="modal" data-target="#addComplaint-{{ $item->id }}">
+                                                {{ trans('site.file_complant') }}
+                                            </button>
+                                            @include('user.partials.orders.addComplaintForm' , ['order' => $order ,
+                                            'item' => $item])
                                             <br>
-                                            <a href="#" class=" btn btn-sm btn-secondary font-10 rounded-pill">
-                                                RETURN ITEM
-                                            </a>
+                                            @if(!$item->returned)
+                                            <button class="mb-1 btn btn-sm btn-secondary font-10 rounded-pill mr-2"
+                                                data-toggle="modal" data-target="#returnItemForm-{{ $item->id }}">
+                                                {{ trans('site.return_item.text') }}
+                                            </button>
+                                            @include('user.partials.orders.returnItemForm' , ['order' => $order , 'item'
+                                            => $item])
+                                            @endif
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="product-photo">
-                                            <img src="{{ asset('img/cart/thumbinal.png') }}" alt="dummy">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product-details">
-                                            <h6 class="font-12 text-capitalize main-color font-weight-bold">
-                                                Mickey and Minnie mouse cupcake <br> topper and wrapper
-                                            </h6>
-                                            <form action="">
-                                                <label class="mb-0">Rate this product:</label>
-                                                <select name="rate" id="rate" class="form-control mb-2 mt-2">
-                                                    <option value="1">1 Star</option>
-                                                    <option value="2">2 Star</option>
-                                                    <option value="3">3 Star</option>
-                                                    <option value="4">4 Star</option>
-                                                    <option value="5">5 Star</option>
-                                                </select>
-                                                <div class="form-group">
-                                                    <textarea class="form-control  " id="note" rows="2"></textarea>
-                                                </div>
-                                                <button class="btn btn-sm btn-danger font-11 rounded-pill">Rate</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="actions ">
-                                            <a href="#" class="mb-1 btn btn-sm btn-secondary font-10 rounded-pill mr-2">
-                                                FILE A COMPLAINT
-                                            </a>
-                                            <br>
-                                            <a href="#" class=" btn btn-sm btn-secondary font-10 rounded-pill">
-                                                RETURN ITEM
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
+                                @endforeach
 
                             </tbody>
                         </table>

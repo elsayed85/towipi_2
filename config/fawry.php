@@ -1,31 +1,9 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Debug option
-    |--------------------------------------------------------------------------
-    | Accept boolean value , and toggle between the production endpoint and sandbox
-    */
-
-    'debug' => env('FAWRY_DEBUG', true),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fawry Keys
-    |--------------------------------------------------------------------------
-    |
-    | The Fawry publishable key and secret key give you access to Fawry's
-    | API.
-    */
-
-    'merchant_code' => env('FAWRY_MERCHANT_CODE'),
-
-    'security_key' => env('FAWRY_SECURITY_KEY'),
-
-    'users_table' => 'users',
-
-    'user_model' => App\User::class,
-
+    "lang" => "ar-eg",
+    "merchantCode" => "1tSa6uxz2nQDrSCUSJ7b9w==",
+    "secureHashkey" => "8a6063c1711f4b078154bc86fcb6a02c",
+    'mode' => "test", // test or live
+    'enabled' => true
 ];

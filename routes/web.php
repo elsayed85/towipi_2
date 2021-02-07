@@ -1,6 +1,7 @@
 <?php
 
 use App\GPRMC;
+use App\Models\Product\Order;
 use App\Models\Product\Product;
 use App\User;
 use Illuminate\Support\Facades\Route;
@@ -18,25 +19,8 @@ Route::get('product', "ProductController@index")->name('product.index');
 
 //fawry
 Route::get('test', function () {
-    // Get user
-    $user = User::find(50);
-    $cardNumber = "4242424242424242";
-    $expiryYear = "21";
-    $expiryMonth = "05";
-    $cvv = "100";
-
-    $refNumber = 123;
-
-    $fawry = app("fawry");
-
-    $payment = $fawry->chargeViaFawry($refNumber, $user, "5543474002259998", 100, Product::all()->random(5)->toArray(), "desc here");
-
-    dd($payment);
-    //dd(app("fawry")->deleteCardToken($user));
-
-    //$tokenResponse = app("fawry")->createCardToken($cardNumber, $expiryYear, $expiryMonth, $cvv, $user);
-
-    //dd($tokenResponse, app("fawry")->listCustomerTokens($user));
+    $order = Order::find(2);
+    $order->setStatus(Order::STATE_DELIVERED);
 });
 
 // paypal

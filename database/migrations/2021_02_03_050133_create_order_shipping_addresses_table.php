@@ -23,7 +23,7 @@ class CreateOrderShippingAddressesTable extends Migration
             $table->string('city');
             $table->unsignedBigInteger('governorate_id')->nullable();
             $table->foreign('governorate_id')->references('id')->on('governorates')->onDelete('set null');
-            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('order_id')->unique();
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

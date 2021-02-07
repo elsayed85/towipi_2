@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Payment\Fawry;
 use App\Models\General\Page;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Blade;
@@ -18,9 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('fawry', function () {
-            return new Fawry();
-        });
+        //
     }
 
     /**

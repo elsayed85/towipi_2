@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\Payment\Payment;
 use App\User;
 use Cknow\Money\MoneyCast;
 use Illuminate\Database\Eloquent\Collection;
@@ -18,13 +19,14 @@ class Order extends Model
     const STATE_PENDING                 = 'pending';
     const STATE_READEY_FOR_SHIPPING     = 'readyforshipping';
     const STATE_SHIPPED                 = 'shipped';
-    const STATE_ABANDONED               = 'abandoned';
     const STATE_RETURNED                = 'returned';
+    const STATE_DELIVERED               = 'delivered';
 
     protected $dates = ['deleted_at', 'completed_at'];
 
     protected $casts = [
         'total' => MoneyCast::class,
+        'tax_total' => MoneyCast::class,
     ];
 
     /**
@@ -50,6 +52,16 @@ class Order extends Model
     public function shippingAddress()
     {
         return $this->hasOne(ShippingAddress::class);
+    }
+
+    public function getShippingPriceAttribute()
+    {
+        return optional($this->shippingAddress)->governorate->shipping_price;
+    }
+
+    public function getTotalWithShippingAttribute()
+    {
+        return $this->total->add($this->shipping_price);
     }
 
     public function getOrderNumberAttribute($value)
@@ -80,5 +92,26 @@ class Order extends Model
     public function setShipped($reason  = null)
     {
         $this->setStatus(static::STATE_SHIPPED, $reason);
+    }
+
+    public function isPaid()
+    {
+        return $this->payment_status;
+    }
+
+    public function setAsPaid()
+    {
+        $this->payment_status = true;
+        return $this;
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
     }
 }

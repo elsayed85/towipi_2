@@ -13,6 +13,7 @@ class CartController extends Controller
 {
     public function store(Request $request, Product $product)
     {
+        abort_if($product->outOfStock() , 404);
         $options =  [];
         if ($request->has('options')) {
             $options = [

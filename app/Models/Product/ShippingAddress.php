@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\General\Governorate;
 use Illuminate\Database\Eloquent\Model;
 
 class ShippingAddress extends Model
@@ -30,5 +31,10 @@ class ShippingAddress extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function governorate()
+    {
+        return $this->belongsTo(Governorate::class)->withDefault();
     }
 }

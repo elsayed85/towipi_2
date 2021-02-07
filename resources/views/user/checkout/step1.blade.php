@@ -64,6 +64,9 @@
                                     </div>
                                 </td>
                                 <td>
+                                    @livewire('cart-item-counter', ['rowId' => $item->rowId , 'max' => $product->amount])
+                                </td>
+                                <td>
                                     <div class="actions">
                                         <form action="{{ route('user.cart.remove' , $item->rowId) }}" method="post">
                                             @csrf

@@ -7,7 +7,7 @@ return [
      |--------------------------------------------------------------------------
      */
     'locale' => config('app.locale', 'en_US'),
-    'defaultCurrency' => config('app.currency', 'EGP'),
+    'defaultCurrency' => env("CURRENCY" , "EGP"),
     'currencies' => [
         'iso' => 'all',
         'bitcoin' => 'all',

@@ -48,9 +48,11 @@ $inStock = $product->inStock();
             <div class="btn-group-sm" role="group" aria-label="">
                 @auth
                 @role(['user'])
+                @if($inStock)
                 <button type="submit" class="btn btn-sm btn-info rounded-pill mr-3">
                     <i class="fas fa-shopping-cart mr-2"></i> {{ trans('site.add_to_cart') }}
                 </button>
+                @endif
                 @livewire('site.wishlist', ['product' => $product])
                 @endrole
                 @endauth

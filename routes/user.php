@@ -7,6 +7,9 @@ Route::post('get-governorates', "AddressController@getGovernorates")->name('get_
 
 Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::get('/', 'OrdersController@index')->name('index');
+    Route::post('{order}/{item}/add-rate', "OrdersController@addRate")->name('add_rate');
+    Route::post('{order}/{item}/add-complaint', "OrdersController@addComplaint")->name('add_complaint');
+    Route::post('{order}/{item}/return-item', "OrdersController@addItemToReturnedItems")->name('return_item');
 });
 
 Route::group(['prefix' => 'wishlist', 'as' => 'wishlist.'], function () {
@@ -29,6 +32,17 @@ Route::group(['prefix' => 'checkout', 'as' => 'checkout.'], function () {
     Route::post('{order}/shipping/add-new-address', 'CheckoutController@addNewAddress')->name('add_new_address');
     Route::post('{order}/shipping/select-address', 'CheckoutController@selectAddress')->name('select_address');
     Route::get('{order}/payment', 'CheckoutController@payment')->name('payment');
+    Route::get('{order}/payment/final', 'CheckoutController@finalStep')->name('final_step');
+    Route::post('{order}/payment/cashondelivery', 'CheckoutController@cashOnDelivery')->name('cash_on_delivery');
+});
+
+
+Route::group(['prefix' => 'payment', 'as' => 'payment.', 'namespace' => "Payment"], function () {
+    Route::post('{order}/pyapal/setup-transaction', 'PaypalController@setUpTransaction')->name('paypal.setup_transaction');
+    Route::post('{order}/pyapal/verify-transaction', 'PaypalController@verifyTransaction')->name('paypal.verify_transaction');
+
+    Route::get('{order}/fawry/success', 'FawryController@success')->name('fawry.success');
+    Route::get('{order}/fawry/failed', 'FawryController@failed')->name('fawry.failed');
 });
 
 

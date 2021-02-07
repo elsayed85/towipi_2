@@ -1,220 +1,191 @@
 <?php
-
 namespace App\Http\Payment;
+
+/*-------------------------------------------------------
+*
+*   Fawry Payment Class
+*   Copyright © 2020 Ahmed Taher
+*
+*--------------------------------------------------------
+*
+*   Contact Github: https://github.com/eng-ahmedtaher
+*
+*   GNU General Public License, version 1:
+*   http://www.gnu.org/licenses/old-licenses/gpl-1.0.html
+*
+---------------------------------------------------------
+*/
 
 class Fawry
 {
-    public $merchantCode;
+    /*
+	*	Initialize Charge Request Properties.
+	*
+	*	The language used by your customer. It should be 'ar-eg' or 'en-gb'.
+	*/
+    private static $language;
 
-    public $securityKey;
+    /*
+	*	Your identifier on our system Ex: 'SHKKRxuqZ5Y='.
+	*/
+    private static $merchantCode;
 
-    public function __construct()
+    /*
+	*	A unique identifier for the orders on your system Ex: 'OR-123456789'.
+	*/
+    private static $merchantRefNumber;
+
+    /*
+	*	Customer Name Ex: 'Ahmed Taher'.
+	*/
+    private static $customerName;
+
+    /*
+	*	Customer Mobile Ex: '+20123456789'.
+	*/
+    private static $mobile;
+
+    /*
+	*	Customer Email Ex: 'ahmedtaherinfo0@gmail.com'.
+	*/
+    private static $email;
+
+    /*
+	*	Optional feature: The customer identifier id in your System Ex: '1253'.
+	*/
+    private static $customerProfileId;
+
+    /*
+	*	The order description which will be printed on POS receipt if the customer pay in Fawry channels Ex: 'Order Number 1 Description'.
+	*/
+    private static $description;
+
+    /*
+	*	The merchant needs to set a specific expiry number of hours for the unpaid placed orders Ex: '24'.
+	*/
+    private static $expiry;
+
+    /*
+	*	The Order Items	Product ID Ex: '152'.
+	*/
+    private static $productSKU;
+
+    /*
+	*	The Order Items Description Ex: 'PES2020 Game'.
+	*/
+    private static $orderDescription;
+
+    /*
+	*	The Order Items Price like Decimal Format Ex: '100.00'.
+	*/
+    private static $price;
+
+    /*
+	*	The Order Items Quantity Ex: '1'.
+	*/
+    private static $quantity;
+
+    /*
+	*	The Order Items Width Ex: '10inch'.
+	*/
+    private static $width;
+
+    /*
+	*	The Order Items Height Ex: '22inch'.
+	*/
+    private static $height;
+
+    /*
+	*	The Order Items Length Ex: '25inch'.
+	*/
+    private static $length;
+
+    /*
+	*	The Order Items Weight Ex: '1.25kg'.
+	*/
+    private static $weight;
+
+    /*
+	*	To avoid the request from being edited by the customer use the request signature hash the result using SHA-256.
+	*	You will Hashed: 'merchantCode, merchantRefNumber, Customer profile id, OrderID, Quantity, Price, Expiry hours, Secure hash key'.
+	*/
+    private static $signature;
+
+    /*
+	*	Collect items that will be encrypted via SHA-256.
+	*/
+    private static $hash;
+
+    /*
+	*	Upon completion of the Request Success Payment, you will be redirect to this URL.
+	*/
+    private static $successURL;
+
+    /*
+	*	Upon completion of the Request Failer Payment, you will be redirect to this URL.
+	*/
+    private static $failURL;
+
+    /*
+	*	Your Secure Hash key of Your Account in Fawry.
+	*/
+    private static $secureHashkey;
+
+    /*
+	*	Render JS SandBox Environment
+	*/
+    public static function jsSandBox()
     {
-        $this->merchantCode = config('fawry.merchant_code');
+        $script = '<script type="text/javascript" src="https://atfawry.fawrystaging.com/ECommercePlugin/scripts/FawryPay.js"></script>';
 
-        $this->securityKey = config('fawry.security_key');
+        return $script;
     }
 
-    public function endpoint($uri)
+    /*
+	*	Render JS Live Environment
+	*/
+    public static function jsLive()
     {
-        return config('fawry.debug') ?
-            'https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/' . $uri :
-            'https://www.atfawry.com/ECommerceWeb/Fawry/' . $uri;
+        $script = '<script type="text/javascript" src="https://www.atfawry.com/ECommercePlugin/scripts/FawryPay.js"></script>';
+
+        return $script;
     }
 
-    public function createCardToken($cardNumber, $expiryYear, $expiryMonth, $cvv, $user)
+    /*
+	*	Render Checkout Button
+	*/
+    public static function payment($language = 'ar-eg', $merchantCode, $merchantRefNumber, $customerName = null, $mobile, $email, $customerProfileId, $description, $expiry = 24, $productSKU, $orderDescription, $price, $quantity, $width = null, $height = null, $length = null, $weight = null, $successURL, $failURL, $secureHashkey)
     {
-        $result =  $this->post(
-            $this->endpoint("cards/cardToken"),
-            [
-                "merchantCode" => $this->merchantCode,
-                "customerProfileId" => md5($user->id),
-                "customerMobile" => $user->mobile,
-                "customerEmail" => $user->email,
-                "cardNumber" => $cardNumber,
-                "expiryYear" => $expiryYear,
-                "expiryMonth" => $expiryMonth,
-                "cvv" => $cvv
-            ]
-        );
 
-        if ($result->statusCode == 200) {
+        self::$language = $language;
+        self::$merchantCode = $merchantCode;
+        self::$merchantRefNumber = $merchantRefNumber;
+        self::$customerName = $customerName;
+        self::$mobile = $mobile;
+        self::$email = $email;
+        self::$customerProfileId = $customerProfileId;
+        self::$description = $description;
+        self::$expiry = $expiry;
+        self::$productSKU = $productSKU;
+        self::$orderDescription = $orderDescription;
+        self::$price = $price;
+        self::$quantity = $quantity;
+        self::$width = $width;
+        self::$height = $height;
+        self::$length = $length;
+        self::$weight = $weight;
+        self::$successURL = $successURL;
+        self::$failURL = $failURL;
+        self::$secureHashkey = $secureHashkey;
 
-            $user->update([
-                'payment_card_last_four' => $result->card->lastFourDigits,
-                'payment_card_brand' => str_replace(' ', '', $result->card->brand ?? null),
-                'payment_card_fawry_token' => $result->card->token,
-            ]);
-        }
+        self::$hash = self::$merchantCode . self::$merchantRefNumber . self::$customerProfileId . self::$productSKU . self::$quantity . self::$price . self::$expiry . self::$secureHashkey;
 
-        return $result;
-    }
+        self::$signature = hash('sha256', self::$hash);
 
-    public function listCustomerTokens($user)
-    {
-        return $this->get(
-            $this->endpoint("cards/cardToken"),
-            [
-                'merchantCode' => $this->merchantCode,
-                'customerProfileId' => md5($user->id),
-                'signature' => hash('sha256', $this->merchantCode . md5($user->id) . $this->securityKey),
-            ]
-        );
-    }
+        $input = '<input type="image" style="width:120px" src="' . asset('assets/fawry-logo.png') . '" onclick="FawryPay.checkout({';
+        $input .=     "'language':'" . self::$language . "', 'merchantCode':'" . self::$merchantCode . "', 'merchantRefNumber':'" . self::$merchantRefNumber . "', 'customer':{ 'name':'" . self::$customerName . "', 'mobile':'" . self::$mobile . "', 'email':'" . self::$email . "', 'customerProfileId':'" . self::$customerProfileId . "' }, 'order':{ 'description':'" . self::$description . "', 'expiry':'" . self::$expiry . "', 'orderItems':[{ 'productSKU':'" . self::$productSKU . "', 'description':'" . self::$orderDescription . "', 'price':'" . self::$price . "', 'quantity':'" . self::$quantity . "', 'width':'" . self::$width . "', 'height':'" . self::$height . "', 'length':'" . self::$length . "', 'weight':'" . self::$weight . "' }] }, 'signature':'" . self::$signature . "'},'" . self::$successURL . "', '" . self::$failURL . "')";
+        $input .= '"; value="' . trans('fawry.pay_button') .'"/>';
 
-    public function deleteCardToken($user)
-    {
-        $result =  $this->delete(
-            $this->endpoint("cards/cardToken"),
-            [
-                'merchantCode' => $this->merchantCode,
-                'customerProfileId' => md5($user->id),
-                'signature' => hash(
-                    'sha256',
-                    $this->merchantCode .
-                        md5($user->id) .
-                        $user->payment_card_fawry_token .
-                        $this->securityKey
-                )
-            ]
-        );
-
-        if ($result->statusCode == 200) {
-            $user->update([
-                'payment_card_last_four' => null,
-                'payment_card_brand' => null,
-                'payment_card_fawry_token' => null,
-            ]);
-        }
-
-        return $result;
-    }
-
-    public function chargeViaCard($merchantRefNum, $user, $amount, $chargeItems = [], $description = null)
-    {
-        return $this->post(
-            $this->endpoint("payments/charge"),
-            [
-                'merchantCode' => $this->merchantCode,
-                'merchantRefNumber' => $merchantRefNum,
-                'payment_method' => 'CARD',
-                'cardToken' => $user->payment_card_fawry_token,
-                'customerProfileId' => md5($user->id),
-                'customerMobile' => $user->phone,
-                'customerEmail' => $user->email,
-                "customerName" => $user->name,
-                'amount' => $amount,
-                'currencyCode' => 'EGP',
-                'cvv' => '100',
-                'language' => 'en-gb',
-                'chargeItems' => $chargeItems,
-                'description' => $description,
-                'signature' => hash(
-                    'sha256',
-                    $this->merchantCode .
-                        $merchantRefNum .
-                        md5($user->id) .
-                        'CARD' .
-                        (float) $amount .
-                        $user->payment_card_fawry_token .
-                        $this->securityKey
-                )
-            ]
-        );
-    }
-
-    public function chargeViaFawry($merchantRefNum, $user, $paymentExpiry, $amount, $chargeItems = [], $description = null)
-    {
-        return $this->post(
-            $this->endpoint("payments/charge"),
-            [
-                [
-                    'merchantCode' => $this->merchantCode,
-                    'merchantRefNum' => $merchantRefNum,
-                    'paymentMethod' => 'PAYATFAWRY',
-                    'paymentExpiry' => $paymentExpiry,
-                    'customerProfileId' => md5($user->id),
-                    'customerMobile' => $user->mobile,
-                    'customerEmail' => $user->email,
-                    'amount' => $amount,
-                    'currencyCode' => 'EGP',
-                    'chargeItems' => $chargeItems,
-                    'description' => $description,
-                    'signature' => hash(
-                        'sha256',
-                        $this->merchantCode .
-                            $merchantRefNum .
-                            md5($user->id) .
-                            'PAYATFAWRY' .
-                            (float) $amount .
-                            $this->securityKey
-                    )
-                ]
-            ]
-        );
-    }
-
-    public function refund($fawryRefNumber, $refundAmount, $reason = null)
-    {
-        return $this->post(
-            $this->endpoint("payments/refund"),
-            [
-                'merchantCode' => $this->merchantCode,
-                'referenceNumber' => $fawryRefNumber,
-                'refundAmount' => $refundAmount,
-                'reason' => $reason,
-                'signature' => hash(
-                    'sha256',
-                    $this->merchantCode .
-                        $fawryRefNumber .
-                        number_format((float) $refundAmount, 2) .
-                        $this->securityKey
-                )
-            ]
-        );
-    }
-
-    public function get($url, $data)
-    {
-        $params = '';
-        foreach ($data as $key => $value)
-            $params .= $key . '=' . $value . '&';
-
-        $params = trim($params, '&');
-
-        $ch = curl_init($url . "?" . $params);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST,  "GET");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        return json_decode(curl_exec($ch));
-    }
-
-    public function post($url, $data)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST,  "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen(json_encode($data))
-        ));
-
-        return json_decode(curl_exec($ch));
-    }
-
-    public function delete($url, $data)
-    {
-        $params = '';
-        foreach ($data as $key => $value)
-            $params .= $key . '=' . $value . '&';
-
-        $params = trim($params, '&');
-
-        $ch = curl_init($url . "?" . $params);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST,  "DELETE");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        return json_decode(curl_exec($ch));
+        return $input;
     }
 }

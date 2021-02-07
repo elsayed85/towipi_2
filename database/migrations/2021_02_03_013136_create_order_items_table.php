@@ -24,6 +24,7 @@ class CreateOrderItemsTable extends Migration
 
             $table->unsignedInteger('quantity');
             $table->string('unit_price');
+            $table->longText('options')->nullable();
         });
     }
 

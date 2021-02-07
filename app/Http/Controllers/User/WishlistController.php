@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\Product;
 use App\Models\Product\Wishlist;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
@@ -35,6 +37,16 @@ class WishlistController extends Controller
 
     public function moveToCart(Wishlist $wishlist)
     {
-        //
+        abort_unless($wishlist->user_id == auth()->id(), 403);
+        $product = $wishlist->product;
+        if($product->outOfStock()){
+            return back()->withFailed(trans('site.msg.product_is_out_of_stock'));
+        }
+        $cart = Cart::add($product->id, $product->title, 1, $product->price->getAmount(), 0, $options ?? [])->associate(Product::class);
+        if ($product->hasDiscount()) {
+            Cart::setDiscount($cart->rowId, $product->discount_percent);
+        }
+        $wishlist->delete();
+        return back()->withSuccess(trans('site.msg.item_moved_to_cart_succfully'));
     }
 }

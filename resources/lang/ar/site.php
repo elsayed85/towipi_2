@@ -1,6 +1,7 @@
 <?php
 
 return array (
+  '_rate_product_msg' => '',
   'actions' => 
   array (
     'name' => '',
@@ -23,6 +24,8 @@ return array (
     'shipping_notes' => '',
     'title' => '',
   ),
+  'back_to_cart' => '',
+  'back_to_shipping' => '',
   'buy' => '',
   'cancel' => '',
   'cart' => 
@@ -41,6 +44,7 @@ return array (
     'step4' => '',
   ),
   'choose' => '',
+  'complete_order' => '',
   'confirm_pass' => '',
   'continue' => '',
   'country' => '',
@@ -51,12 +55,14 @@ return array (
   'email' => '',
   'error' => '',
   'favorites' => '',
+  'file_complant' => '',
   'fname' => '',
   'footer' => 
   array (
     'faqs' => '',
   ),
   'forget_yout_password' => '',
+  'go_to_payment' => '',
   'in_stock' => '',
   'lname' => '',
   'login' => 'تسجيل الدخول',
@@ -73,15 +79,27 @@ return array (
     'address_deleted' => '',
     'cart_msg' => '',
     'info_updated' => '',
+    'item_already_returned' => '',
+    'item_moved_to_cart_succfully' => '',
+    'item_returned_succfully' => '',
     'no_orders_yet' => '',
     'order' => 
     array (
       'cart_is_empty' => '',
+      'complaint_added' => '',
+      'not_paied_yet' => '',
+      'not_payed_yet' => '',
       'order_created' => '',
+      'payment_done' => '',
+      'paypal_paymen_cancled' => '',
+      'rate_added' => '',
+      'shipping_address_required' => '',
     ),
     'password_updated' => '',
+    'product_is_out_of_stock' => '',
     'wishlist_deleted' => '',
   ),
+  'msg_select_address' => '',
   'nav' => 
   array (
     'about' => '',
@@ -94,15 +112,42 @@ return array (
   'or' => '',
   'order' => 
   array (
+    'complaints_count' => '',
+    'product' => 
+    array (
+      'complaints_count' => '',
+    ),
+    'status' => 
+    array (
+      'delivered' => '',
+      'placed' => '',
+      'readyforshipping' => '',
+      'shipped' => '',
+    ),
     'submit' => '',
   ),
+  'order_number' => '',
   'out_of_stock' => '',
   'password' => '',
+  'payment' => 
+  array (
+    'method' => 
+    array (
+      'casch_on_delivery' => '',
+      'fawry' => '',
+      'paypal' => '',
+    ),
+  ),
+  'payment_method:' => '',
   'phone_number' => '',
   'photo' => '',
+  'product_complaint_content' => '',
   'product_details' => '',
   'products' => '',
+  'purchasing_date' => '',
   'qty' => '',
+  'rate' => '',
+  'rate_product_msg' => '',
   'read_more' => '',
   'register' => '',
   'related_products' => '',
@@ -110,11 +155,24 @@ return array (
   'remove' => '',
   'remove_from_wishlist' => '',
   'removed_from_wishlist' => '',
+  'return_item' => 
+  array (
+    'message' => '',
+    'returned' => '',
+    'status' => 
+    array (
+      'accepted_msg' => '',
+      'rejected_msg' => '',
+      'waiting_msg' => '',
+    ),
+    'text' => '',
+  ),
   'save' => '',
   'search' => 
   array (
     'placeholder' => '',
   ),
+  'send' => '',
   'services' => 
   array (
     'sec1' => 
@@ -139,6 +197,7 @@ return array (
     ),
   ),
   'share' => '',
+  'star' => '',
   'update' => '',
   'user' => 
   array (

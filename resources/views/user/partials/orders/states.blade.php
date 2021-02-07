@@ -1,38 +1,30 @@
 <ul class="list-unstyled steps-process d-flex align-items-center justify-content-between flex-wrap">
-    <li class="finished-step">
+    <li class="@if($order->hasEverHadStatus("placed")) finished-step @endif">
         <span>
             1
         </span>
         <br>
-        Order
-        placed
+        {{ trans('site.order.status.placed') }}
     </li>
-    <li class="finished-step">
-        <span>
-            2
-        </span>
-        <br>
-        Confirmed
-    </li>
-    <li class="finished-step">
+    <li class="@if($order->hasEverHadStatus("readyforshipping")) finished-step @endif">
         <span>
             3
         </span>
         <br>
-        Ready for shipping
+        {{ trans('site.order.status.readyforshipping') }}
     </li>
-    <li>
+    <li class="@if($order->hasEverHadStatus("shipped")) finished-step @endif">
         <span>
             4
         </span>
         <br>
-        Shipped
+        {{ trans('site.order.status.shipped') }}
     </li>
-    <li>
+    <li class="@if($order->hasEverHadStatus("delivered")) finished-step @endif">
         <span>
             5
         </span>
         <br>
-        Delivered
+        {{ trans('site.order.status.delivered') }}
     </li>
 </ul>

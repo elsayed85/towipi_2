@@ -15,7 +15,7 @@
         {{ trans('site.checkout.step2') }}
 
     </li>
-    <li>
+    <li class="@if(isRouteName('user.checkout.payment')) current-step @endif">
         <span>
             3
         </span>
@@ -23,7 +23,7 @@
         {{ trans('site.checkout.step3') }}
 
     </li>
-    <li>
+    <li class="@if(isRouteName('user.checkout.finalStep')) current-step @endif">
         <span>
             4
         </span>

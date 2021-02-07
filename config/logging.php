@@ -47,6 +47,12 @@ return [
             'level' => 'debug',
         ],
 
+        'fawry' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/fawry.log'),
+            'level' => 'debug',
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

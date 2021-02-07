@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
 
             $table->unsignedInteger('items_count');
             $table->string('total');
+            $table->string('tax_total');
 
             $table->longText('notes')->nullable();
 
@@ -28,7 +29,6 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->timestamps();
-            $table->datetime('completed_at')->nullable();
             $table->softDeletes();
         });
     }

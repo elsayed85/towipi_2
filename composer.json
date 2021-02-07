@@ -24,10 +24,12 @@
         "laravel/ui": "^2.4",
         "livewire/livewire": "^2.3",
         "mcamara/laravel-localization": "^1.6",
+        "paypal/paypal-checkout-sdk": "^1.0",
+        "paypal/rest-api-sdk-php": "*",
         "santigarcor/laratrust": "^6.3",
         "spatie/laravel-medialibrary": "^8.0.0",
         "spatie/laravel-model-status": "^1.10",
-        "spatie/laravel-ray": "^1.11",
+        "spatie/laravel-ray": "^1.11.2",
         "spatie/laravel-settings": "^1.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

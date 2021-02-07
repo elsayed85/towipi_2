@@ -17,7 +17,7 @@ class CreateGovernoratesTable extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_ar')->nullable();
-            $table->string('shipping_price')->default(0.0);
+            $table->string('shipping_price')->nullable();
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->on('countries')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

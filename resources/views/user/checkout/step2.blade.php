@@ -4,14 +4,15 @@
 <section class="order-process order-process-step-1 mt-5">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-8 col-lg-9">
+            <div class="col-lg-12">
                 <h4 class="mb-3 main-color font-30 text-center mb-4">
-                    <i class="fas fa-map-marker-alt"></i> Your Shipping Address
+                    <i class="fas fa-map-marker-alt"></i> {{ trans('site.msg.cart_msg') }}
                 </h4>
 
                 @include('user.partials.checkout.steps')
 
                 <div class="mt-4 address">
+                    @if(!$order->shippingAddress)
                     <div class="text-right mb-3">
                         <a id="add-new-address" href="#" class="btn btn-danger btn-sm rounded-pill font-12">
                             <i class="fas fa-plus mr-2"></i> {{ trans('site.add_new_addresss') }}
@@ -25,7 +26,8 @@
                             <li>
                                 <div class="d-flex justify-content-between address-name-action">
                                     <label>
-                                        <input name="address_id" value="{{ $address->id }}" type="radio" autocomplete="off"
+                                        <input name="address_id" value="{{ $address->id }}" type="radio"
+                                            autocomplete="off"
                                             data-shipping-price="{{ $address->governorate->shipping_price->getAmount()  }}">
                                         {{ $address->title }}
                                     </label>
@@ -108,7 +110,6 @@
                                                         <label
                                                             for="country">{{ trans('site.address_info.country') }}</label>
                                                         <select class="form-control" id="country" name="country_id">
-                                                            <option selected>Select one</option>
                                                             @foreach ($countries as $country)
                                                             <option value="{{ $country->id }}" @if(old('country_id' ,
                                                                 auth()->user()->country_id) == $country->id)
@@ -168,8 +169,7 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="address_area">{{ trans('site.address_info.address_area') }}</label>
-                                                        <textarea name="name" class="form-control"
-                                                            id="address_area"
+                                                        <textarea name="name" class="form-control" id="address_area"
                                                             rows="3">{{ old('address_name') }}</textarea>
                                                         @error('name')
                                                         <span class="invalid-feedback" role="alert">
@@ -193,93 +193,70 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <!-- ./form-group -->
-                                                <div class="col-12">
-                                                    <button class="btn btn-sm btn-danger mr-2 rounded-pill font-14"
-                                                        type="submit"><i
-                                                            class="fas fa-save mr-1"></i>{{ trans('site.save') }}</button>
-                                                    <button id="cancel-address"
-                                                        class="btn btn-sm btn-outline-danger rounded-pill font-14">
-                                                        <i class="fas fa-times mr-1"></i>{{ trans('site.cancel') }}
-                                                    </button>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
                             </li>
+                            <!-- ./form-group -->
+                            <div class="col-12">
+                                <button class="btn btn-sm btn-danger mr-2 rounded-pill font-14" type="submit"><i
+                                        class="fas fa-save mr-1"></i>{{ trans('site.save') }}</button>
+                                {{-- <button id="cancel-address"
+                                    class="btn btn-sm btn-outline-danger rounded-pill font-14">
+                                    <i class="fas fa-times mr-1"></i>{{ trans('site.cancel') }}
+                                </button> --}}
+                            </div>
                         </form>
                     </ul>
+                    @else
+                    @php
+                    $shippingAddress = $order->shippingAddress;
+                    @endphp
+                    <table class="table table-light">
+                        <thead>
+                            <tr>
+                                <td>First Name</td>
+                                <td>Last Name</td>
+                                <td>First Phone</td>
+                                <td>Second Phone</td>
+                                <td>Address</td>
+                                <td>Country</td>
+                                <td>Governorate</td>
+                                <td>City</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $shippingAddress->fname }}</td>
+                                <td>{{ $shippingAddress->lname }}</td>
+                                <td>{{ $shippingAddress->phone_1 }}</td>
+                                <td>{{ $shippingAddress->phone_2 }}</td>
+                                <td>{{ $shippingAddress->name }}</td>
+                                <td>{{ $shippingAddress->governorate->country->name }}</td>
+                                <td>{{ $shippingAddress->governorate->name_en }}</td>
+                                <td>{{ $shippingAddress->city }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @endif
+
                     <hr>
                     <div class="d-flex justify-content-between flex-wrap">
-
                         <a href="{{ route('user.checkout.index') }}">
                             <button class="btn btn-sm btn-info mr-2 rounded-pill font-14">
-                                <i class="fas fa-chevron-left mr-1"></i> Back to cart
+                                <i class="fas fa-chevron-left mr-1"></i> {{ trans('site.back_to_cart') }}
                             </button>
                         </a>
-
-                        <button class="btn btn-sm btn-outline-info rounded-pill font-14"
-                            onclick="document.getElementById('add_address_form').submit()">
-                            Proceed to payment <i class="fas fa-chevron-right ml-1"></i>
-                        </button>
-
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-sm btn-outline-info rounded-pill font-14"
-                            data-toggle="modal" data-target="#exampleModal">
-                            Launch shipping errors
-                        </button>
+                        <a href="{{ route('user.checkout.payment' , ['order' => $order]) }}">
+                            <button class="btn btn-sm btn-outline-info rounded-pill font-14">
+                                {{ trans('site.go_to_payment') }} <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </a>
                     </div>
-
                 </div>
             </div>
-
-            <div class="col-12 col-md-4 col-lg-3">
-                <div class="border rounded p-3 order-summery">
-                    <h4 class="text-center mb-3 font-18 font-weight-bold main-color">
-                        Order Summary
-                    </h4>
-                    <ul class="list-unstyled">
-                        <li class="d-flex justify-content-between lh-sm mb-2">
-                            <span class="my-0 font-15 text-capitalize">{{ trans('order.total_before') }}</span>
-                            <span class="font-12"
-                                data-total="{{ $order->total->getAmount() }}">{{ $order->total }}</span>
-                        </li>
-                        <li class="d-flex justify-content-between lh-sm mb-2">
-                            <span class="my-0 font-15 text-capitalize">Shipping cost</span>
-                            <span class="font-12" id="shipping_cost">--</span>
-                        </li>
-                        <li class="d-flex justify-content-between lh-sm mb-2">
-                            <span class="my-0 font-15 text-capitalize">Discount</span>
-                            <span class="font-12" id="discount">--</span>
-                        </li>
-                        <li class="border-top pt-2 d-flex justify-content-between border-bottom-0">
-                            <span class="font-15">Total </span>
-                            <span class="font-12"
-                                data-total="{{ $order->total->getAmount() }}">{{ $order->total }}</span>
-                        </li>
-                        <li class=" text-center">
-                            <form action="">
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
-                                        placeholder="">
-                                    <button class="btn btn-info btn-sm rounded-pill font-11 w-100 mt-2">
-                                        Apply Coupon
-                                    </button>
-                                    <small id="helpId" class="form-text text-muted font-11">You can apply only
-                                        one
-                                        coupon</small>
-                                </div>
-
-                            </form>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div>
-
         </div>
     </div>
 </section>

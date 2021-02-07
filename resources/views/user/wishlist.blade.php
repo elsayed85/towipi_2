@@ -31,15 +31,19 @@
                                 </td>
                                 <td>
                                     <div class="product-details">
-                                        <h6 class="font-12 text-capitalize main-color font-weight-bold">
-                                            {{ $product->title }}
-                                        </h6>
+                                        <a href="{{ route('product.show' , ['product' => $product]) }}">
+                                            <h6 class="font-12 text-capitalize main-color font-weight-bold">
+                                                {{ $product->title }}
+                                            </h6>
+                                        </a>
                                         <h5
                                             class="h6 font-weight-bold main-color primary-color d-flex align-items-center font-14">
-                                            EGP 5.00
+                                            {{ $product->price }}
+                                            @if($product->hasDiscount())
                                             <span class="badge badge-danger badge-pill  main-bg-color ml-2">
-                                                -25% off
+                                                {{ trans('site.discount.percent' , ['discount' => $product->discount_percent]) }}
                                             </span>
+                                            @endif
                                         </h5>
 
                                     </div>

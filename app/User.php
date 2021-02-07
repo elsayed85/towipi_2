@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Address;
 use App\Models\General\Country;
+use App\Models\Product\Complaint;
 use App\Models\Product\Order;
 use App\Traits\HasWishlist;
 use BeyondCode\Vouchers\Traits\CanRedeemVouchers;
@@ -24,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'fname', 'lname', 'email', 'password', 'phone', 'country_id', 'email_verified_at', 'payment_card_last_four', 'payment_card_brand', 'payment_card_fawry_token', 'is_active'
+        'fname', 'lname', 'email', 'password', 'phone', 'country_id', 'email_verified_at', 'is_active'
     ];
 
     /**
@@ -75,6 +76,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
     }
 
     public function scopeActive(Builder $q)

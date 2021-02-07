@@ -33,12 +33,39 @@ class OrderItem extends Model implements OrderItemInterface
         return $this->belongsTo(Order::class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class, 'item_id');
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class, 'item_id');
+    }
+
+    public function returned()
+    {
+        return $this->hasOne(ReturnedItem::class , 'item_id');
+    }
+
+    public function isReturned()
+    {
+        return $this->returned()->exists();
+    }
+
+    public function getOptionsAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function setOptionsAttribute($value)
+    {
+        $this->attributes['options'] = json_encode($value);
     }
 
     /**

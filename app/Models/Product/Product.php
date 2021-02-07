@@ -91,6 +91,7 @@ class Product extends Model implements TranslatableContract, HasMedia, Buyable
         return $this->hasMany(Option::class);
     }
 
+
     /**
      * {@inheritdoc}
      */
