@@ -26,8 +26,13 @@ class Rate extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product()
+    public function items()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(OrderItem::class);
+    }
+
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, OrderItem::class, 'product_id', 'item_id');
     }
 }

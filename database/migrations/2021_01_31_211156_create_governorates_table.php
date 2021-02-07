@@ -16,7 +16,6 @@ class CreateGovernoratesTable extends Migration
         Schema::create('governorates', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
-            $table->string('name_ar')->nullable();
             $table->string('shipping_price')->nullable();
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->on('countries')->references('id')->cascadeOnDelete()->cascadeOnUpdate();

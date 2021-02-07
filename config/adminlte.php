@@ -248,6 +248,18 @@ return [
             'can'  => ['admins-create', 'admins-read', 'admins-update', 'admins-delete'],
         ],
         [
+            'text' => 'Users',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['users-create', 'users-read', 'users-update', 'users-delete'],
+        ],
+        [
+            'text' => 'Orders',
+            'url'  => 'admin/orders',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['orders-read'],
+        ],
+        [
             'text' => 'Pages',
             'url'  => 'admin/pages',
             'icon' => 'fas fa-fw fa-lock',
@@ -264,6 +276,12 @@ return [
             'url'  => 'admin/country',
             'icon' => 'fas fa-fw fa-lock',
             'can'  => ['country-create', 'country-read', 'country-update', 'country-delete'],
+        ],
+        [
+            'text' => 'governorates',
+            'url'  => 'admin/governorate',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['governorate-read'],
         ],
         [
             'text' => 'Languages & Translation',

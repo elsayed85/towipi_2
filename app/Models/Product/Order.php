@@ -112,6 +112,6 @@ class Order extends Model
 
     public function complaints()
     {
-        return $this->hasMany(Complaint::class);
+        return $this->hasManyThrough(Complaint::class , OrderItem::class , 'order_id' , 'item_id');
     }
 }

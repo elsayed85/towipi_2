@@ -38,9 +38,9 @@ class OrderItem extends Model implements OrderItemInterface
         return $this->belongsTo(Product::class);
     }
 
-    public function rates()
+    public function rate()
     {
-        return $this->hasMany(Rate::class, 'item_id');
+        return $this->hasOne(Rate::class, 'item_id');
     }
 
     public function complaints()

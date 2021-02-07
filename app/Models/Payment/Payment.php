@@ -3,6 +3,8 @@
 namespace App\Models\Payment;
 
 use App\Models\Product\Order;
+use App\User;
+use Cknow\Money\MoneyCast;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
@@ -14,8 +16,22 @@ class Payment extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'total' => MoneyCast::class . ":currency_code",
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

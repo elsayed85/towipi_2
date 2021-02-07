@@ -180,7 +180,7 @@ class GovernorateSeeder extends Seeder
         $egypt = Country::whereiso("EG")->first();
 
         foreach($data as $gov){
-            $egypt->governorates()->create(['name_en' => $gov[2] , "name_ar" => $gov[1] , 'shipping_price' => rand(1,50)]);
+            $egypt->governorates()->create(['name_en' => $gov[2] , 'shipping_price' => rand(1,50)]);
         }
     }
 }

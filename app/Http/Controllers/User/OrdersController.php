@@ -17,18 +17,18 @@ class OrdersController extends Controller
     {
         $orders = auth()->user()->orders()->latest()->with([
             'payment',
+            'statuses',
             'items' => function ($items) {
                 return $items->withCount([
                     'complaints' => function ($complaints) {
                         return $complaints->whereUserId(auth()->id());
-                    },
-                    'returned'
+                    }
                 ]);
             },
-            'statuses',
+            'items.returned',
             'items.product.translations',
             'items.product.media',
-            "items.rates" => function ($rate) {
+            "items.rate" => function ($rate) {
                 return $rate->whereUserId(auth()->id());
             }
         ])->paginate(5);
@@ -40,8 +40,8 @@ class OrdersController extends Controller
 
     public function addRate(AddRateRequest $request, Order $order, OrderItem $item)
     {
-        abort_if($item->rates()->whereUserId(auth()->id())->exists(), 403);
-        $item->rates()->create([
+        abort_if($item->rate()->whereUserId(auth()->id())->exists(), 403);
+        $item->rate()->create([
             'value' => $request->rate_value,
             'review' => $request->review,
             'user_id' => auth()->id(),

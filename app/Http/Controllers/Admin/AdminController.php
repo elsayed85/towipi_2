@@ -26,6 +26,7 @@ class AdminController extends Controller
         $this->middleware(['permission:admins-update'])->only(['update', 'edit']);
         $this->middleware(['permission:admins-delete'])->only('destroy');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -146,7 +147,6 @@ class AdminController extends Controller
                     return $permission;
                 });
         }
-
         return view('admin.admins.edit', [
             'admin' => $admin,
             'roles' => $roles,

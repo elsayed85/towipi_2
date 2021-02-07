@@ -67,7 +67,7 @@
                                                 @endif
                                             </span>
                                             @endif
-                                            @if($rate = $item->rates->first())
+                                            @if($rate = $item->rate)
                                             <p>
                                                 <div class="d-flex align-items-center">
                                                     {{ trans('site.rate') }} : {{ $rate->value }}

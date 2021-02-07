@@ -25,6 +25,17 @@ class ReturnedItem extends Model
         return is_null($this->accepeted);
     }
 
+    public function getStatusStrAttribute()
+    {
+        if ($this->isWaitingForAccept()) {
+            return "waiting for accept";
+        } elseif ($this->isAccepted()) {
+            return "accepted";
+        } elseif ($this->isRejected()) {
+            return "rejected";
+        }
+    }
+
     public function isAccepted()
     {
         return !is_null($this->accepeted) && $this->accepeted == true;

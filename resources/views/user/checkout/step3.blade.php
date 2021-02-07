@@ -29,40 +29,12 @@
                     <input type="image" src="{{ asset('assets/cash-on-delivery-icon-14.jpg') }}"
                         onclick="document.getElementById('cashondeliver_form').submit()" style="width: 130px">
                 </form>
-
-                <form action="" id="checkout_paypemt_form">
-                    <div class="my-3">
-                        <div class="form-check">
-                            <input id="fawry" name="payment_method" value="fawry" type="radio" class="form-check-input"
-                                checked="" required="">
-                            <label class="form-check-label" for="fawry">{{ trans('site.payment.method.fawry') }}</label>
-
-                        </div>
-                        <div class="form-check">
-                            <input id="credit" name="payment_method" value="paypal" type="radio"
-                                class="form-check-input" checked="" required="">
-                            <label class="form-check-label" for="credit">{{ trans('site.payment.method.paypal') }}
-                            </label>
-
-                        </div>
-                        <div class="form-check">
-                            <input name="payment_method" value="cash" type="radio" class="form-check-input" required="">
-                            <label class="form-check-label"
-                                for="paypal">{{ trans('site.payment.method.casch_on_delivery') }}</label>
-                        </div>
-                    </div>
-                </form>
                 <div class="d-flex justify-content-between flex-wrap">
                     <a href="{{ route('user.checkout.shipping' , ['order' => $order]) }}">
                         <button class="btn btn-sm btn-info mr-2 rounded-pill font-14">
                             <i class="fas fa-chevron-left mr-1"></i> {{ trans('site.back_to_shipping') }}
                         </button>
                     </a>
-
-                    <button type="submit" class="btn btn-sm btn-outline-info rounded-pill font-14"
-                        onclick="document.getElementById('checkout_paypemt_form').submit()">
-                        {{ trans('site.complete_order') }} <i class="fas fa-chevron-right ml-1"></i>
-                    </button>
                 </div>
             </div>
             <div class="col-12 col-md-3">

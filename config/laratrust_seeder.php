@@ -19,7 +19,10 @@ return [
             'faq' => 'c,r,u,d',
             'country' => 'c,r,u,d',
             'personal_info' => 'u',
-            'lang_and_translations' => 'u'
+            'lang_and_translations' => 'u',
+            'payments' => "r",
+            'governorate' => 'c,r,u,d',
+            'orders' => 'r,d'
         ],
         'admin' => [
             'admins' => 'r',
@@ -28,7 +31,10 @@ return [
             'faq' => 'c,r,u,d',
             'country' => 'c,r,u,d',
             'personal_info' => 'u',
-            'lang_and_translations' => 'u'
+            'lang_and_translations' => 'u',
+            'payments' => "r",
+            'governorate' => 'r,u',
+            'orders' => 'r'
         ],
         'user' => [
             'personal_info' => 'u'
