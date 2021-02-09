@@ -1,0 +1,63 @@
+{
+    "name": "cknow/laravel-money",
+    "description": "Laravel Money",
+    "keywords": [
+        "laravel",
+        "money",
+        "currency"
+    ],
+    "homepage": "https://github.com/cknow/laravel-money",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ricardo Gobbo de Souza",
+            "email": "ricardogobbosouza@yahoo.com.br"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "ext-intl": "*",
+        "illuminate/support": "^7.0|^8.0",
+        "illuminate/view": "^7.0|^8.0",
+        "moneyphp/money": "^3.3"
+    },
+    "require-dev": {
+        "graham-campbell/testbench": "^5.5",
+        "illuminate/filesystem": "^7.0|^8.0",
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^8.5|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cknow\\Money\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cknow\\Money\\Tests\\": "tests/"
+        },
+        "files": [
+            "tests/Database/Migrations/2020_04_30_000000_create_users_table.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cknow\\Money\\MoneyServiceProvider"
+            ]
+        }
+    }
+}
