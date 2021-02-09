@@ -4,9 +4,12 @@ namespace App\Models\Product;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Rate extends Model
 {
+    use BelongsToThrough;
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -26,13 +29,16 @@ class Rate extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function items()
+    public function item()
     {
         return $this->belongsTo(OrderItem::class);
     }
 
-    public function products()
+    public function product()
     {
-        return $this->hasManyThrough(Product::class, OrderItem::class, 'product_id', 'item_id');
+        return $this->belongsToThrough(Product::class, OrderItem::class, null, '', [
+            Product::class  => "product_id",
+            OrderItem::class => "item_id"
+        ]);
     }
 }

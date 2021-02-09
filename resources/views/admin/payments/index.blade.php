@@ -19,6 +19,7 @@
                     <th>order</th>
                     <th>user</th>
                     <th>Created</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,18 @@
                         <a href="{{ route('admin.users.show' , $payment->user) }}">{{ $payment->user->name }}</a>
                     </td>
                     <td>{{ $payment->created_at }}</td>
+                    <td>
+                        @permission('payments-delete')
+                        <form action="{{ route('admin.payments.destroy' , $payment) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                        @endpermission
+                        @permission('payments-read')
+                        <a href="{{ route('admin.payments.show' , $payment) }}" class="btn btn-info">show</a>
+                        @endpermission
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

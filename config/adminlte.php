@@ -229,14 +229,9 @@ return [
             'search' => false,
             'topnav' => true,
         ],
-        [
-            'text' => 'Roles & Permissions',
-            'url'  => 'admin/roles',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
         ['header' => 'account_settings'],
         [
-            'text' => 'Settings',
+            'text' => 'Account Settings',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
             'can'  => 'personal_info-update',
@@ -254,10 +249,40 @@ return [
             'can'  => ['users-create', 'users-read', 'users-update', 'users-delete'],
         ],
         [
+            'text' => 'complaints',
+            'url'  => 'admin/complaints',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['complaints-read'],
+        ],
+        [
             'text' => 'Orders',
             'url'  => 'admin/orders',
             'icon' => 'fas fa-fw fa-lock',
             'can'  => ['orders-read'],
+        ],
+        [
+            'text' => 'Returned Products',
+            'url'  => 'admin/products/returned/items',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['products-read'],
+        ],
+        [
+            'text' => 'Products',
+            'url'  => 'admin/products',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['products-read'],
+        ],
+        [
+            'text' => 'Products Categories',
+            'url'  => 'admin/products/p/category',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['product-category-read'],
+        ],
+        [
+            'text' => 'payments',
+            'url'  => 'admin/payments',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => ['payments-read',  'payments-delete'],
         ],
         [
             'text' => 'Pages',

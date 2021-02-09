@@ -49,6 +49,7 @@ class Category extends Model implements TranslatableContract, HasMedia
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+
     public function isMain()
     {
         return is_null($this->parent_id);

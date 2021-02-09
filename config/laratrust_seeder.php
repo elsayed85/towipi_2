@@ -20,9 +20,12 @@ return [
             'country' => 'c,r,u,d',
             'personal_info' => 'u',
             'lang_and_translations' => 'u',
-            'payments' => "r",
+            'payments' => "r,d",
             'governorate' => 'c,r,u,d',
-            'orders' => 'r,d'
+            'orders' => 'r,d',
+            'products' => 'c,r,u,d',
+            'product-category' => 'c,r,u,d',
+            'complaints' => 'r,d'
         ],
         'admin' => [
             'admins' => 'r',
@@ -34,7 +37,10 @@ return [
             'lang_and_translations' => 'u',
             'payments' => "r",
             'governorate' => 'r,u',
-            'orders' => 'r'
+            'orders' => 'r',
+            'products' => 'r',
+            'product-category' => 'u',
+            'complaints' => 'r,d'
         ],
         'user' => [
             'personal_info' => 'u'

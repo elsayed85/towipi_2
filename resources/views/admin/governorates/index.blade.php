@@ -3,7 +3,11 @@
 @section('title', 'governorates')
 
 @section('content_header')
-<h1 class="m-0 text-dark">governorates</h1>
+<h1 class="m-0 text-dark">governorates
+    @permission('governorate-create')
+     | <a href="{{ route('admin.governorate.create') }}" class="btn btn-info">Add New</a>
+    @endpermission
+</h1>
 @stop
 
 @section('content')
@@ -19,6 +23,7 @@
                     <th>addresses count</th>
                     <th>shipping addresses count</th>
                     <th>Created</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +36,18 @@
                     <td>{{ $gov->addresses_count }}</td>
                     <td>{{ $gov->shipping_addresses_count }}</td>
                     <td>{{ $gov->created_at }}</td>
+                    <td>
+                        @permission('governorate-delete')
+                        <form action="{{ route('admin.governorate.destroy' , $gov) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                        @endpermission
+                        @permission('governorate-update')
+                        <a href="{{ route('admin.governorate.edit' , $gov) }}" class="btn btn-info">edit</a>
+                        @endpermission
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

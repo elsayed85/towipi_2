@@ -15,8 +15,8 @@
                 @if($product->video_url)
                 @include('site.partials.products.video')
                 @endif
-                @include('site.partials.products.reviews')
-                @include('site.partials.products.reviews_list')
+                @include('site.partials.products.reviews' , ['averageRating' => $averageRating])
+                @include('site.partials.products.reviews_list' , ['rates' => $product->rates ])
             </div>
             <!-- ./product-view-gallery -->
             <!-- .product-view-gallery -->

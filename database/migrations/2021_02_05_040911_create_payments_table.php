@@ -23,6 +23,7 @@ class CreatePaymentsTable extends Migration
             $table->foreign('user_id')->on('users')->references('id')->nullOnDelete();
             $table->string('method')->nullable();
             $table->string('reference_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

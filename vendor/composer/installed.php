@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c2c2d3ef96f6041f390c9d33751113cce0c45f71',
+    'reference' => '5c74240e8a1a1f2a278ec866ceaf1fd117e26bc7',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -557,7 +557,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c2c2d3ef96f6041f390c9d33751113cce0c45f71',
+      'reference' => '5c74240e8a1a1f2a278ec866ceaf1fd117e26bc7',
     ),
     'laravel/tinker' => 
     array (
@@ -1262,6 +1262,15 @@
       array (
       ),
       'reference' => 'f517729b3793bca58f847c5fd383ec16f03ffec6',
+    ),
+    'staudenmeir/belongs-to-through' => 
+    array (
+      'pretty_version' => 'v2.10.1',
+      'version' => '2.10.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '91451e8f90834807f5dc439a8124e40071f062f4',
     ),
     'swiftmailer/swiftmailer' => 
     array (

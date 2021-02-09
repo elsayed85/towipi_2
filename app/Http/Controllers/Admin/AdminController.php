@@ -164,7 +164,7 @@ class AdminController extends Controller
     public function update(AdminCrudRequest $request, User $admin)
     {
         $password = !is_null($request->password) ? ["password" => Hash::make($request->password)] : [];
-        $admin->update($request->only(['email', 'name']) + $password);
+        $admin->update($request->only(['email', 'fname' , 'lname']) + $password);
         $admin->syncRoles($request->roles ?? ['admin']);
         if ($this->assignPermissions) {
             $admin->syncPermissions($request->permissions ?? []);

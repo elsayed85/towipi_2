@@ -4,8 +4,10 @@ namespace App;
 
 use App\Models\Address;
 use App\Models\General\Country;
+use App\Models\Payment\Payment;
 use App\Models\Product\Complaint;
 use App\Models\Product\Order;
+use App\Models\Product\Rate;
 use App\Traits\HasWishlist;
 use BeyondCode\Vouchers\Traits\CanRedeemVouchers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -88,9 +90,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Complaint::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function scopeActive(Builder $q)
     {
         return $q->whereIsActive(true);
+    }
+
+    public function toggleActivate()
+    {
+        if ($this->is_active) {
+            return $this->update(['is_active' => false]);
+        }
+        return $this->update(['is_active' => true]);
     }
 
     // AdminLte

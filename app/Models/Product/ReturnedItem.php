@@ -4,10 +4,12 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use PayPal\Api\Item;
+use Znck\Eloquent\Traits\BelongsToThrough;
 
 class ReturnedItem extends Model
 {
+    use BelongsToThrough;
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -17,7 +19,23 @@ class ReturnedItem extends Model
 
     public function item()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(OrderItem::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsToThrough(Product::class, OrderItem::class, null, '', [
+            Product::class => "product_id",
+            OrderItem::class => "item_id"
+        ]);
+    }
+
+
+    public function order(){
+        return $this->belongsToThrough(Order::class, OrderItem::class, null, '', [
+            Order::class => "order_id",
+            OrderItem::class => "item_id"
+        ]);
     }
 
     public function isWaitingForAccept()

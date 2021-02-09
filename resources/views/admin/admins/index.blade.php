@@ -3,7 +3,11 @@
 @section('title', 'Admins')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Admins</h1>
+<h1 class="m-0 text-dark">Admins
+    @permission('admins-create')
+     | <a href="{{ route('admin.admin.create') }}" class="btn btn-info">Add New</a>
+    @endpermission
+</h1>
 @stop
 
 @section('content')

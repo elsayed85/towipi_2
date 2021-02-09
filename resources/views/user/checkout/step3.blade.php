@@ -71,7 +71,7 @@
                             </span>
                             @endif
                         </li>
-                        <li class=" text-center">
+                        {{-- <li class=" text-center">
                             <form action="">
                                 <div class="form-group">
                                     <label for=""></label>
@@ -85,7 +85,7 @@
                                 </div>
 
                             </form>
-                        </li>
+                        </li> --}}
 
                     </ul>
 

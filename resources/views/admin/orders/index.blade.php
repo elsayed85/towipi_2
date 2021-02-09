@@ -22,6 +22,7 @@ Payments
                     <th>user</th>
                     <th>complaints count</th>
                     <th>Created</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +39,18 @@ Payments
                     </td>
                     <td>{{ $order->complaints_count }}</td>
                     <td>{{ $order->created_at }}</td>
+                    <td>
+                        @permission('orders-delete')
+                        <form action="{{ route('admin.orders.destroy' , $order) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                        @endpermission
+                        @permission('orders-read')
+                        <a href="{{ route('admin.orders.show' , $order) }}" class="btn btn-info">show</a>
+                        @endpermission
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

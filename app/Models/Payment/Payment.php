@@ -6,9 +6,12 @@ use App\Models\Product\Order;
 use App\User;
 use Cknow\Money\MoneyCast;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
+    use SoftDeletes;
+    
     /**
      * The attributes that aren't mass assignable.
      *

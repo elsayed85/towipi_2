@@ -16,7 +16,6 @@ Route::get('categories/{category:slug}', "CategoryController@index")->name('cate
 Route::get('product/{product:slug}', "ProductController@show")->name('product.show');
 Route::get('product', "ProductController@index")->name('product.index');
 
-
 //fawry
 Route::get('test', function () {
     $order = Order::find(2);

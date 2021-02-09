@@ -3,7 +3,11 @@
 @section('title', 'Faq')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Faq</h1>
+<h1 class="m-0 text-dark">Faq
+    @permission('faq-create')
+     | <a href="{{ route('admin.faq.create') }}" class="btn btn-info">Add New</a>
+    @endpermission
+</h1>
 @stop
 
 @section('content')

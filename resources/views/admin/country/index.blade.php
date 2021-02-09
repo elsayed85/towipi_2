@@ -3,7 +3,11 @@
 @section('title', 'Countries')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Countries</h1>
+<h1 class="m-0 text-dark">Countries
+    @permission('country-create')
+     | <a href="{{ route('admin.country.create') }}" class="btn btn-info">Add New</a>
+    @endpermission
+</h1>
 @stop
 
 @section('content')

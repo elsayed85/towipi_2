@@ -91,6 +91,16 @@ class Product extends Model implements TranslatableContract, HasMedia, Buyable
         return $this->hasMany(Option::class);
     }
 
+    public function complaints()
+    {
+        return $this->hasManyThrough(Complaint::class, OrderItem::class, 'product_id', 'item_id');
+    }
+
+    public function rates()
+    {
+        return $this->hasManyThrough(Rate::class, OrderItem::class , 'product_id' , 'item_id');
+    }
+
 
     /**
      * {@inheritdoc}
