@@ -116,6 +116,7 @@ return array (
     'complaints_count' => 'complaints Count',
     'status' =>
     array (
+      'confirmed' => 'Confirmed',
       'delivered' => 'Delivered',
       'placed' => 'Placed',
       'readyforshipping' => 'Ready For Shipping',

@@ -6,6 +6,13 @@
         <br>
         {{ trans('site.order.status.placed') }}
     </li>
+    <li class="@if($order->hasEverHadStatus("confirmed")) finished-step @endif">
+        <span>
+            2
+        </span>
+        <br>
+        {{ trans('site.order.status.confirmed') }}
+    </li>
     <li class="@if($order->hasEverHadStatus("readyforshipping")) finished-step @endif">
         <span>
             3

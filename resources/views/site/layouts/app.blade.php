@@ -80,16 +80,22 @@
     })
 
     @if(session()->has('success'))
-    Toast.fire({
-        type: 'success',
-        title: '{{ session("success") }}'
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{ session("success") }}',
+        showConfirmButton: false,
+        timer: 1500
     })
     @endif
 
     @if(session()->has('failed'))
-    Toast.fire({
-        type: 'error',
-        title: '{{ session("failed") }}'
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: '{{ session("failed") }}',
+        showConfirmButton: false,
+        timer: 5000
     })
     @endif
 

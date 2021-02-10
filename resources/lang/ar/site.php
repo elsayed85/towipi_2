@@ -120,6 +120,7 @@ return array (
     ),
     'status' => 
     array (
+      'confirmed' => '',
       'delivered' => '',
       'placed' => '',
       'readyforshipping' => '',

@@ -48,9 +48,11 @@ class OrderController extends Controller
             $order->setReadyForShipping();
         } elseif ($action == "shipped") {
             $order->setShipped();
-        } elseif ($action == "shipped") {
-            $order->setShipped();
+        } elseif ($action == "delivered") {
+            $order->setDelivered();
+        } elseif ($action == "confirmed") {
+            $order->setConfirmed();
         }
-        return redirect(route('admin.orders.show', ['order' => $order]))->withSuccess("order state updated to {$order->status}");
+        return redirect(route('admin.orders.show', ['order' => $order]))->withSuccess("order state is {$order->status} now`     ");
     }
 }

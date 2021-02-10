@@ -60,6 +60,12 @@
                 <form action="{{ route('admin.orders.tracking.action' , $order) }}" method="post"
                     style="display: inline-block">
                     @csrf
+                    <input type="hidden" name="action_name" value="confirmed">
+                    <button class="btn btn-info">Order confirmed</button>
+                </form>
+                <form action="{{ route('admin.orders.tracking.action' , $order) }}" method="post"
+                    style="display: inline-block">
+                    @csrf
                     <input type="hidden" name="action_name" value="readyforshipping">
                     <button class="btn btn-info">ready for shipping</button>
                 </form>
@@ -68,6 +74,12 @@
                     @csrf
                     <input type="hidden" name="action_name" value="shipped">
                     <button class="btn btn-info">Order shipped</button>
+                </form>
+                <form action="{{ route('admin.orders.tracking.action' , $order) }}" method="post"
+                    style="display: inline-block">
+                    @csrf
+                    <input type="hidden" name="action_name" value="delivered">
+                    <button class="btn btn-info">Order delivered</button>
                 </form>
             </div>
         </div>

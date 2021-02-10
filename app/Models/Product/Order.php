@@ -21,6 +21,7 @@ class Order extends Model
     const STATE_SHIPPED                 = 'shipped';
     const STATE_RETURNED                = 'returned';
     const STATE_DELIVERED               = 'delivered';
+    const STATE_CONFIRMED              = 'confirmed';
 
     protected $dates = ['deleted_at', 'completed_at'];
 
@@ -94,6 +95,16 @@ class Order extends Model
         $this->setStatus(static::STATE_SHIPPED, $reason);
     }
 
+    public function setConfirmed($reason  = null)
+    {
+        $this->setStatus(static::STATE_CONFIRMED, $reason);
+    }
+
+    public function setDelivered($reason  = null)
+    {
+        $this->setStatus(static::STATE_DELIVERED, $reason);
+    }
+
     public function isPaid()
     {
         return $this->payment_status;
@@ -112,6 +123,6 @@ class Order extends Model
 
     public function complaints()
     {
-        return $this->hasManyThrough(Complaint::class , OrderItem::class , 'order_id' , 'item_id');
+        return $this->hasManyThrough(Complaint::class, OrderItem::class, 'order_id', 'item_id');
     }
 }
