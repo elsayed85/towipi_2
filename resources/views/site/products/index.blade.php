@@ -36,11 +36,11 @@
                             <div class="btn-group-sm" role="group" aria-label="">
                                 <button type="button" class="btn btn-sm btn-info rounded-pill"
                                     onclick="location.replace('{{ route('product.show' , $product) }}')">
-                                    <i class="fas fa-shopping-cart"></i> Buy
+                                    <i class="fas fa-shopping-cart"></i> {{ trans('site.buy') }}
                                 </button>
                                 <button type="button" class="btn btn-sm btn-outline-info rounded-pill"
                                     onclick="location.replace('{{ route('product.show' , $product) }}')">
-                                    <i class="fas fa-eye mr-1"></i> View
+                                    <i class="fas fa-eye mr-1"></i> {{ trans('site.view') }}
                                 </button>
                                 @auth
                                 @role('user')

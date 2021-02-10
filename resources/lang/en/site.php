@@ -56,6 +56,7 @@ return array (
   ),
   'email' => 'Email',
   'error' => 'Error',
+  'faq' => 'FAQ',
   'favorites' => 'Favorites',
   'file_complant' => 'FILE A COMPLAINT',
   'fname' => 'First Name',
@@ -193,6 +194,17 @@ return array (
   ),
   'share' => 'Share : ',
   'star' => 'Star',
+  'top_sellings' =>
+  array (
+    'cake_tools' =>
+    array (
+      'title' => 'top selling items (cake tools)',
+    ),
+    'party' =>
+    array (
+      'title' => 'top selling items (party supplies)',
+    ),
+  ),
   'update' => 'Update',
   'user' =>
   array (

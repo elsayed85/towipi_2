@@ -54,6 +54,7 @@ return array (
   'details' => '',
   'email' => '',
   'error' => '',
+  'faq' => '',
   'favorites' => '',
   'file_complant' => '',
   'fname' => '',
@@ -198,6 +199,17 @@ return array (
   ),
   'share' => '',
   'star' => '',
+  'top_sellings' => 
+  array (
+    'cake_tools' => 
+    array (
+      'title' => '',
+    ),
+    'party' => 
+    array (
+      'title' => '',
+    ),
+  ),
   'update' => '',
   'user' => 
   array (

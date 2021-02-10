@@ -16,7 +16,7 @@ class FaqController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $faqs = Faq::latest()->get();
-        return $faqs;
+        $faqs = Faq::latest()->with(['translations'])->paginate(10);
+        return view('site.faq' ,  get_defined_vars());
     }
 }
